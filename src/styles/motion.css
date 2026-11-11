@@ -1,0 +1,258 @@
+/* ARC motion system. Imported after global.css.
+   One rule for this file: the resting state of every element is its normal, fully visible style.
+   Motion only ever adds a "from" state (keyframes with a backwards fill, or a class the script
+   adds and removes). No JavaScript, reduced motion or an old browser means a static page. */
+
+:root {
+  --ease-settle: cubic-bezier(0.3, 0.55, 0.05, 1); /* entrances: a spring with no bounce */
+  --dur-press: 70ms;
+  --dur-enter: 800ms; /* reads as about 450ms with --ease-settle */
+  --dur-photo: 1400ms;
+  --beat: 190ms; /* one beat of the sample problem's rhythm */
+  --rise: 20px;
+  --rise-word: 0.3em;
+  --blur-word: 8px; /* the only blur on the site; set to 0px to remove it */
+  --photo-from: 1.06;
+  --stagger-word: 45ms;
+}
+
+@media (max-width: 52rem) {
+  :root {
+    --rise: 12px;
+    --dur-reveal: 600ms;
+  }
+}
+
+/* Keyframes hold only the starting state; the end state is the element's own style. */
+
+@keyframes arc-rise-blur {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise-word);
+    filter: blur(var(--blur-word));
+  }
+}
+
+@keyframes arc-rise {
+  from {
+    opacity: 0;
+    translate: 0 var(--rise);
+  }
+}
+
+/* Never fully transparent, so the browser still counts the text as painted. */
+@keyframes arc-rise-soft {
+  from {
+    opacity: 0.01;
+    translate: 0 var(--rise);
+  }
+}
+
+@keyframes arc-settle {
+  from {
+    scale: var(--photo-from);
+  }
+}
+
+@keyframes arc-pop {
+  from {
+    opacity: 0;
+    scale: 0.86;
+    translate: 0 var(--rise);
+  }
+}
+
+@keyframes arc-fill {
+  from {
+    clip-path: inset(0 100% 0 0 round 8px);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 8px);
+  }
+}
+
+@keyframes arc-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes arc-drop {
+  from {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
+@keyframes arc-shake {
+  20% {
+    translate: -4px 0;
+  }
+  60% {
+    translate: 4px 0;
+  }
+}
+
+/* 1. Opening sequence: first viewport, CSS only, plays once on load. */
+
+.intro-title .word {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro-title .word {
+    animation: arc-rise-blur var(--dur-enter) var(--ease-settle) backwards;
+    animation-delay: calc(20ms + var(--i, 0) * var(--stagger-word));
+  }
+
+  .intro {
+    animation: arc-rise var(--dur-enter) var(--ease-settle) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .lede.intro {
+    animation-name: arc-rise-soft;
+  }
+
+  /* The lead photo only scales (it may be the largest paint); the other two pop in after it. */
+  .collage .c-main img {
+    animation: arc-settle var(--dur-photo) var(--ease-glide) 120ms backwards;
+  }
+
+  .collage .c-two,
+  .collage .c-three {
+    animation: arc-pop 700ms var(--ease-glide) backwards;
+  }
+
+  .collage .c-two {
+    animation-delay: 420ms;
+  }
+
+  .collage .c-three {
+    animation-delay: 560ms;
+  }
+}
+
+/* 2. Scroll reveals. The script adds .reveal-pending only to elements below the fold. */
+
+.reveal-pending {
+  opacity: 0;
+  translate: 0 var(--rise);
+}
+
+.reveal-pending[data-reveal='photo'] {
+  translate: none;
+}
+
+.reveal-pending[data-reveal='photo'] img {
+  scale: var(--photo-from);
+}
+
+.reveal-in {
+  transition:
+    opacity var(--dur-reveal, var(--dur-enter)) var(--ease-settle) var(--reveal-delay, 0ms),
+    translate var(--dur-reveal, var(--dur-enter)) var(--ease-settle) var(--reveal-delay, 0ms);
+}
+
+.reveal-in[data-reveal='photo'] {
+  transition: opacity 600ms var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+.reveal-in[data-reveal='photo'] img {
+  transition: scale var(--dur-photo) var(--ease-glide) var(--reveal-delay, 0ms);
+}
+
+/* 3. Signature: the sample problem's rhythm fills beat by beat. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .beats.is-waiting > span {
+    clip-path: inset(0 100% 0 0 round 8px);
+  }
+
+  .beats.is-playing > span {
+    animation: arc-fill calc(var(--len, 1) * var(--beat)) linear backwards;
+    animation-delay: calc(var(--at, 0) * var(--beat));
+  }
+
+  .beats.is-leaving > span {
+    animation: arc-fade-out 140ms var(--ease-out) forwards;
+  }
+
+  .check.is-wrong input {
+    animation: arc-shake 280ms var(--ease-out);
+  }
+
+  details[open] > .details-body {
+    animation: arc-rise 500ms var(--ease-settle) backwards;
+  }
+}
+
+/* 4. Header and menu. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header[data-open] .site-nav,
+  .site-header[data-open] .site-nav li {
+    animation: arc-drop var(--dur) var(--ease-settle) backwards;
+  }
+
+  .site-header[data-open] .site-nav li:nth-child(2) {
+    animation-delay: 30ms;
+  }
+
+  .site-header[data-open] .site-nav li:nth-child(3) {
+    animation-delay: 60ms;
+  }
+
+  .site-header[data-open] .site-nav li:nth-child(4) {
+    animation-delay: 90ms;
+  }
+
+  .site-header[data-open] .site-nav li:nth-child(5) {
+    animation-delay: 120ms;
+  }
+
+  .site-header[data-open] .site-nav li:nth-child(6) {
+    animation-delay: 150ms;
+  }
+}
+
+/* 5. Page to page: a plain crossfade where the browser supports it, with no script. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root) {
+  animation: arc-fade-out 150ms var(--ease-out) both;
+}
+
+::view-transition-new(root) {
+  animation: 220ms var(--ease-out) 60ms both reverse arc-fade-out;
+}
+
+/* 6. Safety. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .reveal-pending,
+  .reveal-pending img {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+  }
+
+  .beats > span {
+    clip-path: none !important;
+  }
+}

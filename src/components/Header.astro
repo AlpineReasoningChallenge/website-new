@@ -1,0 +1,299 @@
+---
+import Icon from './Icon.astro';
+import { nav, site, nextEvent } from '../data/site';
+
+const path = Astro.url.pathname;
+const reg = nextEvent.registration;
+const cta =
+  reg.status === 'open'
+    ? { label: `Register for ${nextEvent.shortName}`, href: reg.url }
+    : { label: 'Get updates', href: site.newsletter };
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img src="/logo-on-light.svg" alt="" width="104" height="58" />
+      <span>{site.name}</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="when-closed"><Icon name="menu" /></span>
+      <span class="when-open"><Icon name="close" /></span>
+      <span>Menu</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="button button-small" href={cta.href}>{cta.label}</a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const header = document.querySelector('.site-header');
+    const toggle = header && header.querySelector('.menu-toggle');
+    if (!toggle) return;
+    const setOpen = (open) => {
+      header.toggleAttribute('data-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    // Matches the 64rem breakpoint in the styles below.
+    matchMedia('(min-width: 64.0625rem)').addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+  })();
+</script>
+
+<style>
+  /* The header shares the opening band's pale teal, and turns white once the page scrolls. */
+  .site-header {
+    background: var(--tint);
+    transition:
+      background-color var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    min-height: var(--header-h);
+    padding-block: var(--space-2);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: 1.125rem;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .brand img {
+    width: 6.5rem;
+    height: auto;
+    transition: rotate var(--dur) var(--ease-glide);
+  }
+
+  .brand:hover {
+    color: var(--ink);
+  }
+
+  .brand:hover img {
+    rotate: -3deg;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .site-nav ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1.5vw, 1.75rem);
+  }
+
+  .site-nav li a,
+  .site-nav .button {
+    white-space: nowrap;
+  }
+
+  /* The underline draws in from the left on hover and stays for the current page. */
+  .site-nav li a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--ink);
+    font-size: var(--text-sm);
+    font-weight: 550;
+    text-decoration: none;
+    background: linear-gradient(var(--teal), var(--teal)) no-repeat 0 calc(100% - 0.45rem) / 0% 2px;
+    transition:
+      background-size 240ms var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .site-nav li a:hover,
+  .site-nav li a[aria-current='page'] {
+    color: var(--teal-strong);
+    background-size: 100% 2px;
+  }
+
+  .menu-toggle {
+    display: none;
+    flex: none;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.75rem;
+    padding: 0 var(--space-4);
+    border: 0;
+    border-radius: 999px;
+    background: var(--white);
+    box-shadow: inset 0 0 0 1.5px var(--line);
+    color: var(--ink);
+    font: inherit;
+    font-size: var(--text-sm);
+    font-weight: 650;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: inline-flex;
+  }
+
+  .menu-toggle .when-open,
+  .menu-toggle[aria-expanded='true'] .when-closed {
+    display: none;
+  }
+
+  .menu-toggle[aria-expanded='true'] .when-open {
+    display: inline-flex;
+  }
+
+  /* Wide and tall enough screens keep the header in view. Phones and zoomed-in
+     windows do not, so it never eats a short viewport. */
+  @media (min-width: 64.0625rem) and (min-height: 34rem) {
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      view-transition-name: site-header;
+    }
+
+    .site-header[data-scrolled] {
+      background: rgb(255 255 255 / 0.94);
+      box-shadow:
+        0 1px 0 var(--line),
+        0 12px 28px -20px rgb(14 31 29 / 0.35);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  @media (max-width: 64rem) {
+    .bar {
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      min-height: 4rem;
+    }
+
+    .brand {
+      flex: 1 1 0;
+      min-width: 0;
+      font-size: 1rem;
+    }
+
+    .brand img {
+      width: 5rem;
+    }
+
+    .brand span {
+      max-width: 9.5em;
+    }
+
+    :global(.js) .menu-toggle {
+      display: inline-flex;
+    }
+
+    .site-nav {
+      flex-basis: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-4);
+      padding: var(--space-2) var(--space-4) var(--space-4);
+      margin-bottom: var(--space-3);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow:
+        inset 0 0 0 1px var(--line),
+        var(--shadow-1);
+    }
+
+    :global(.js) .site-nav {
+      display: none;
+    }
+
+    :global(.js) .site-header[data-open] .site-nav {
+      display: flex;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .site-nav li a {
+      display: flex;
+      min-height: 3rem;
+      border-bottom: 1px solid var(--line);
+      font-size: var(--text-base);
+      background: none;
+    }
+
+    .site-nav li a[aria-current='page'] {
+      color: var(--teal);
+    }
+
+    .site-nav .button {
+      align-self: flex-start;
+    }
+
+    /* Without JavaScript the links sit in a compact wrapping row. */
+    :global(html:not(.js)) .site-nav {
+      padding: 0;
+      background: none;
+      box-shadow: none;
+    }
+
+    :global(html:not(.js)) .site-nav ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0 var(--space-5);
+    }
+
+    :global(html:not(.js)) .site-nav li a {
+      border-bottom: 0;
+    }
+  }
+
+  /* Very large text: let the name wrap under the logo instead of sliding under the button. */
+  @media (max-width: 18rem) {
+    .brand {
+      flex: 1 1 100%;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .site-header {
+      border-bottom: 1px solid CanvasText;
+    }
+  }
+</style>

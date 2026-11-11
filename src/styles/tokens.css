@@ -1,0 +1,67 @@
+/* Design tokens: every colour, size, space and motion value on the site comes from here.
+   Breakpoints used across the site (media queries cannot read custom properties):
+   72rem  four-column rows drop to two
+   64rem  header switches to the menu button
+   62rem  wide rows drop a column
+   52rem  two-column layouts stack
+   36rem  phone-only adjustments */
+
+:root {
+  color-scheme: light;
+
+  /* Colour: white pages, near-black text, teal as the only accent. */
+  --white: #ffffff;
+  --ink: #0e1f1d; /* main text */
+  --ink-soft: #465753; /* secondary text */
+  --line: #d9e3e1; /* hairlines */
+  --mist: #f3f7f6; /* pale grey-teal bands */
+  --tint: #e9f6f2; /* the opening and sign-up bands */
+  --wash: #d8f0e9; /* pills and small fills */
+  --teal: #0b7566; /* buttons, links, dates */
+  --teal-strong: #095b50; /* hover, and teal text on tints */
+  --teal-bright: #52d5bf; /* the logo teal: footer only */
+  --deep: #0b2622; /* footer */
+  --on-deep: #e6f2ef;
+  --on-deep-soft: #bfd9d3;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque Variable', 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font: 'Figtree Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h2: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  --text-h1: clamp(2.375rem, 1.2rem + 4.6vw, 4.25rem);
+  --text-figure: clamp(2.75rem, 2rem + 3vw, 4rem);
+
+  /* Space */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --section: clamp(4rem, 2.5rem + 6vw, 8rem);
+
+  /* Shape and depth */
+  --radius-lg: 24px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-1: 0 1px 2px rgb(14 31 29 / 0.06), 0 2px 8px rgb(14 31 29 / 0.06);
+  --shadow-2: 0 2px 6px rgb(14 31 29 / 0.07), 0 24px 48px -14px rgb(14 31 29 / 0.22);
+
+  /* Layout */
+  --wrap: 74rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+  --header-h: 4.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 150ms;
+  --dur: 280ms;
+}

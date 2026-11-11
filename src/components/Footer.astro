@@ -1,0 +1,127 @@
+---
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer on-dark">
+  <div class="wrap top">
+    <div class="about">
+      <img src="/logo-on-dark.svg" alt="" width="160" height="89" loading="lazy" />
+      <p>
+        {site.name} is a nonprofit run by students in Calgary, Alberta. We make free STEM contests and
+        classes for young people.
+      </p>
+    </div>
+
+    <nav aria-label="Footer" class="columns">
+      <div>
+        <h2>What we run</h2>
+        <ul role="list">
+          <li><a href="/rmjsc/">Junior Science Contest</a></li>
+          <li><a href="/sst/">Summit STEM Triathlon</a></li>
+          <li><a href="/classes/">Classes</a></li>
+          <li><a href="/archive/">Past papers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>ARC</h2>
+        <ul role="list">
+          <li><a href="/about/">About and team</a></li>
+          <li><a href="/about/#join">Join the team</a></li>
+          <li><a href="/sponsors/">Sponsor or donate</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Follow</h2>
+        <ul role="list">
+          <li><a href={site.newsletter}>Newsletter</a></li>
+          <li><a href={site.instagram}>Instagram</a></li>
+          <li><a href={site.discord}>Discord</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    <p class="bottom">
+      {`© ${year} ${site.name}.`} An incorporated Alberta nonprofit run by student volunteers in Calgary.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--deep);
+    color: var(--on-deep);
+    font-size: var(--text-sm);
+  }
+
+  .top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr);
+    gap: var(--space-8);
+    padding-block: var(--space-8) var(--space-7);
+  }
+
+  .about img {
+    width: 10rem;
+    height: auto;
+    margin-bottom: var(--space-5);
+  }
+
+  .about p {
+    max-width: 30em;
+    color: var(--on-deep-soft);
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  h2 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 650;
+    letter-spacing: 0;
+    line-height: 1.4;
+    color: var(--teal-bright);
+  }
+
+  /* Each link is a 44px target. */
+  a {
+    display: inline-block;
+    padding-block: 0.625rem;
+    line-height: 1.5;
+    color: var(--on-deep);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  a:hover {
+    color: var(--teal-bright);
+    text-decoration: underline;
+  }
+
+  .bottom {
+    padding-block: var(--space-5);
+    border-top: 1px solid rgb(191 217 211 / 0.18);
+    color: var(--on-deep-soft);
+  }
+
+  @media (max-width: 52rem) {
+    .top {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-7);
+      padding-block: var(--space-7) var(--space-6);
+    }
+
+    .columns {
+      grid-template-columns: repeat(auto-fit, minmax(min(9.5rem, 100%), 1fr));
+    }
+  }
+</style>

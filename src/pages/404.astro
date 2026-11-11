@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+---
+
+<Base title="Page not found" noindex>
+  <section class="wrap section not-found">
+    <h1>This page isn’t here yet.</h1>
+    <p class="lede">
+      We are still building the new site, and this page isn’t done. The home page has the next event
+      date, or you can email us at <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+    <p><a class="arrow-link" href="/">Back to the home page <Icon name="arrow" /></a></p>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    min-height: 50vh;
+  }
+
+  h1 {
+    font-size: var(--text-h2);
+    line-height: 1.04;
+  }
+
+  .not-found p {
+    margin-top: var(--space-5);
+  }
+</style>

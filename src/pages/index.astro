@@ -1,0 +1,1541 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { site, nextEvent, contests, classes, supporters, faq } from '../data/site';
+
+import solving from '../assets/photos/hero-solving.jpg';
+import lunchBreak from '../assets/photos/hero-lunch-break.jpg';
+import pizzaLine from '../assets/photos/hero-pizza-line.jpg';
+import teamWorking from '../assets/photos/rmjsc-team-working.jpg';
+import timer from '../assets/photos/triathlon-2026-timer.jpg';
+import hallWide from '../assets/photos/triathlon-2026-hall-wide.jpg';
+import organizers from '../assets/photos/organizers-2025.jpg';
+
+const reg = nextEvent.registration;
+const headline = 'Free STEM contests and classes for Calgary students, run by students.';
+const words = headline.split(' ');
+
+// One way to fill 7 beats, drawn under the sample problem: long, short, short, long, short.
+const exampleRhythm = [2, 1, 1, 2, 1];
+
+const problemParts = [
+  {
+    points: 1,
+    answer: 21,
+    text: 'State the number of ways Jimmy can compose a piece that is 7 beats long, using any combination of short and long notes.',
+  },
+  {
+    points: 3,
+    answer: null,
+    text: 'The number above is a Fibonacci number. Can you prove why this problem is related to the Fibonacci sequence? (The Fibonacci sequence starts 1, 1, and then each term is the sum of the two previous terms; thus, the first few terms are 1, 1, 2, 3, 5, 8, 13, 21, …)',
+  },
+  {
+    points: 5,
+    answer: 27,
+    text: 'How many different rhythms fill exactly 9 beats if Jimmy must use an even number of long notes?',
+  },
+  {
+    points: 7,
+    answer: 36,
+    text: 'Jimmy would like his music to be less bland, so he has decided that he cannot use 3 short notes in a row. How many valid rhythms fill exactly 10 beats?',
+  },
+];
+
+const day = [
+  {
+    title: 'You work as a team',
+    text: 'You and your teammates solve each round together. Talking it over is the point.',
+  },
+  {
+    title: 'Lunch and snacks are free',
+    text: 'We feed everyone and plan around dietary restrictions. Tell us about allergies when you register.',
+  },
+  {
+    title: 'A workshop and a Kahoot',
+    text: 'ARC’s student instructors teach a workshop, and everyone plays a Kahoot for extra prizes.',
+  },
+  {
+    title: 'Awards before you go home',
+    text: 'We hand out medals, trophies and certificates at the end of the day.',
+  },
+];
+
+const free = ['to enter a contest', 'for lunch and snacks', 'for classes and workshops', 'for past papers'];
+
+const description = `Free STEM contests and classes for Calgary youth, run by students. Next: ${nextEvent.name}, ${nextEvent.fullDate}. Free, lunch included.`;
+---
+
+<Base description={description}>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 class="intro-title">
+          {
+            words.map((word, i) => (
+              <>
+                <span class:list={['word', { accent: i === 0 }]} style={`--i:${i}`}>
+                  {word}
+                </span>{' '}
+              </>
+            ))
+          }
+        </h1>
+        <p class="lede intro" style="--d:380ms">
+          Alpine Reasoning Challenge is a nonprofit run by junior high and high school students.
+          Everything we run is free to take part in.
+        </p>
+        <p class="hero-actions intro" style="--d:480ms">
+          <a class="button" href="#programs">See what we run <Icon name="arrow" /></a>
+          <a class="button button-ghost" href="#problem">Try a sample problem</a>
+        </p>
+      </div>
+
+      <section class="next intro" style="--d:240ms" aria-labelledby="next-heading">
+        <p class="date-tile">
+          <time datetime={nextEvent.isoDate}>
+            <span class="date-month">{nextEvent.month}</span>
+            <span class="date-day">{nextEvent.day}</span>
+            <span class="date-rest">{nextEvent.weekdayYear}</span>
+          </time>
+        </p>
+        <div class="next-body">
+          <h2 id="next-heading">
+            <span class="next-label">
+              Next event
+              <span class="next-count" data-countdown={nextEvent.isoDate} hidden></span>
+            </span>
+            <span class="next-name">{nextEvent.name}</span>
+          </h2>
+          <dl>
+            {
+              nextEvent.facts.map((fact) => (
+                <div>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+        <div class="next-actions">
+          {
+            reg.status === 'open' && (
+              <a class="button" href={reg.url}>
+                Register for {nextEvent.shortName}
+              </a>
+            )
+          }
+          {
+            reg.status === 'soon' && (
+              <a class="button" href={site.newsletter}>
+                Get an email when registration opens
+              </a>
+            )
+          }
+          {
+            reg.status === 'closed' && (
+              <p class="next-closed">
+                Registration is closed. For questions, email <a href={`mailto:${site.email}`}>{site.email}</a>.
+              </p>
+            )
+          }
+          <a class="arrow-link" href={nextEvent.href}>More about {nextEvent.shortName} <Icon name="arrow" /></a>
+          <p class="next-note">{nextEvent.note}</p>
+        </div>
+      </section>
+
+      <div class="collage">
+        <div class="collage-item c-main">
+          <Image
+            src={solving}
+            alt="Three students leaning over their contest papers at one table."
+            widths={[420, 720, 1080, 1440]}
+            sizes="(min-width: 64rem) 26rem, (min-width: 36rem) 24rem, 72vw"
+            loading="eager"
+          />
+        </div>
+        <div class="collage-item c-two">
+          <Image
+            src={lunchBreak}
+            alt="Students at a lunch break, one of them waving at the camera."
+            widths={[320, 560, 840]}
+            sizes="(min-width: 64rem) 17rem, (min-width: 36rem) 16rem, 48vw"
+            loading="eager"
+          />
+        </div>
+        <div class="collage-item c-three">
+          <Image
+            src={pizzaLine}
+            alt="Students lined up for pizza at a contest lunch."
+            widths={[240, 420, 640]}
+            sizes="(min-width: 64rem) 11rem, (min-width: 36rem) 10rem, 30vw"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap programs" id="programs" aria-labelledby="programs-heading">
+    <div class="section-head">
+      <h2 id="programs-heading" data-reveal>What we run</h2>
+      <p class="lede" data-reveal>
+        Everything ARC runs is free. Contests happen in person in Calgary, and classes have run
+        online.
+      </p>
+    </div>
+
+    <ul class="bento" role="list">
+      <li class="card span-7" data-reveal>
+        <div class="card-media">
+          <Image
+            src={teamWorking}
+            alt="Three students bent over one contest paper, working on it together."
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 62rem) 42rem, calc(100vw - 2rem)"
+          />
+          <span class="pill pill-teal card-date">{contests.rmjsc.date}</span>
+        </div>
+        <div class="card-body">
+          <h3>
+            <a href={contests.rmjsc.href}>{contests.rmjsc.name} <Icon name="arrow" /></a>
+          </h3>
+          <p>{contests.rmjsc.summary}</p>
+          <ul class="pills" role="list">
+            {contests.rmjsc.facts.map((fact) => <li class="pill">{fact}</li>)}
+          </ul>
+        </div>
+      </li>
+
+      <li class="card span-5" data-reveal>
+        <div class="card-media">
+          <Image
+            src={timer}
+            alt="A hall full of teams at round tables, with a 45-minute timer on the screens."
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 62rem) 30rem, calc(100vw - 2rem)"
+          />
+          <span class="pill pill-white card-date">{contests.sst.date}</span>
+        </div>
+        <div class="card-body">
+          <h3>
+            <a href={contests.sst.href}>{contests.sst.name} <Icon name="arrow" /></a>
+          </h3>
+          <p>{contests.sst.summary}</p>
+          <ul class="pills" role="list">
+            {contests.sst.facts.map((fact) => <li class="pill">{fact}</li>)}
+          </ul>
+        </div>
+      </li>
+
+      <li class="card card-tint span-7" data-reveal>
+        <div class="card-body">
+          <h3>
+            <a href={classes.href}>Classes and workshops <Icon name="arrow" /></a>
+          </h3>
+          <p>{classes.summary}</p>
+          <p class="card-label">Taught in the 2023 series</p>
+          <ul class="pills" role="list">
+            {classes.topics.map((topic) => <li class="pill pill-white">{topic}</li>)}
+          </ul>
+        </div>
+      </li>
+
+      <li class="card card-new span-5" data-reveal>
+        <div class="card-body">
+          <h3>New this school year</h3>
+          <p>
+            We are adding general STEM events, more kinds of competitions and more classes. Nothing
+            new has a date yet. Dates go out in the newsletter as soon as we set them.
+          </p>
+          <a class="button" href={site.newsletter}>Get event dates by email</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section problem-band" id="problem" aria-labelledby="problem-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="problem-heading" data-reveal>Try one of our problems</h2>
+        <p class="lede" data-reveal>
+          Part 1 needs nothing past counting. The later parts get harder quickly, and the last one
+          is meant to take a while.
+        </p>
+      </div>
+
+      <article class="problem" data-reveal>
+        <div class="problem-statement">
+          <header>
+            <h3>Sample problem: Cabinet</h3>
+            <ul class="pills" role="list">
+              <li class="pill">Summit STEM Triathlon 2026</li>
+              <li class="pill">Algorithmic Thinking</li>
+              <li class="pill">Easy</li>
+            </ul>
+          </header>
+          <p>
+            Jimmy is composing a piece of music. In his piece, he would like to create a rhythm that
+            only uses short notes, which have a length of 1 beat each, and long notes, which have a
+            length of 2 beats each. Note that notes in his rhythm cannot overlap (only one note at a
+            time may be played) and there can be no gaps between each note (once a note ends,
+            another note must immediately begin, unless the piece has ended).
+          </p>
+
+          <figure class="rhythm" data-rhythm>
+            <div class="beats" aria-hidden="true">
+              {exampleRhythm.map((length) => <span class={length === 2 ? 'long' : 'short'}>{length}</span>)}
+            </div>
+            <figcaption>
+              <span class="rhythm-caption" aria-live="polite">
+                One way to fill 7 beats: long, short, short, long, short.
+              </span>
+              <button type="button" class="button button-ghost button-small rhythm-next" hidden>
+                Try another rhythm
+              </button>
+            </figcaption>
+          </figure>
+          <p class="credit">Proposed by Danny Wang. The number beside each part is its point value.</p>
+        </div>
+
+        <div class="problem-parts">
+          <ol class="parts" role="list">
+            {
+              problemParts.map((part, i) => (
+                <li>
+                  <span class="points">
+                    {part.points} {part.points === 1 ? 'pt' : 'pts'}
+                  </span>
+                  <div>
+                    <p>{part.text}</p>
+                    {part.answer !== null && (
+                      <form class="check" data-answer={part.answer} hidden>
+                        <label class="visually-hidden" for={`answer-${i}`}>
+                          Your answer to part {i + 1}
+                        </label>
+                        <input id={`answer-${i}`} type="text" inputmode="numeric" autocomplete="off" placeholder="Your answer" />
+                        <button type="submit" class="button button-small">Check</button>
+                        <span class="check-result" role="status"></span>
+                      </form>
+                    )}
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+
+          <details>
+            <summary>Show the answers</summary>
+            <div class="details-body">
+              <p>
+                7 beats: 21 rhythms. 9 beats with an even number of long notes: 27. 10 beats with no
+                three short notes in a row: 36.
+              </p>
+              <p>
+                For the proof, look at the last note. If it is short, what comes before it is a
+                rhythm one beat shorter. If it is long, what comes before it is a rhythm two beats
+                shorter.
+              </p>
+            </div>
+          </details>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section day-section" aria-labelledby="day-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="day-heading" data-reveal>What a contest day looks like</h2>
+        <p class="lede" data-reveal>
+          Each in-person contest takes one day. Past contests started between 9 and 10 in the
+          morning and finished by 4 in the afternoon.
+        </p>
+      </div>
+    </div>
+
+    <figure class="day-photo" data-reveal="photo">
+      <Image
+        src={hallWide}
+        alt="A wide view of a hall where about a hundred students work in teams at round tables."
+        widths={[640, 1080, 1600, 2200, 2800]}
+        sizes="100vw"
+      />
+      <figcaption>Summit STEM Triathlon, January 2026</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <ul class="day" role="list">
+        {
+          day.map((item) => (
+            <li data-reveal>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section free-band" aria-labelledby="free-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="free-heading" data-reveal>Sponsors keep it free</h2>
+        <p class="lede" data-reveal>
+          Sponsors and donors pay for rooms, food, printing and prizes. That is how every ARC event
+          stays free for students.
+        </p>
+      </div>
+
+      <ul class="free-figures" role="list">
+        {
+          free.map((label) => (
+            <li data-reveal>
+              <span class="figure">$0</span>
+              <span class="figure-label">{label}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="supporters-row" data-reveal>
+        <div>
+          <h3>Past and present supporters</h3>
+          <ul class="pills" role="list">
+            {supporters.map((name) => <li class="pill">{name}</li>)}
+          </ul>
+        </div>
+        <a class="button" href="/sponsors/">Sponsor or donate <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap about" aria-labelledby="about-heading">
+    <figure class="about-photo" data-reveal="photo">
+      <Image
+        src={organizers}
+        alt="Seven ARC organizers standing in front of a chalkboard covered in math."
+        widths={[480, 800, 1200, 1600]}
+        sizes="(min-width: 76rem) 36rem, (min-width: 52rem) calc(50vw - 3rem), calc(100vw - 2rem)"
+      />
+      <figcaption>ARC organizers at RMJSC 2025</figcaption>
+    </figure>
+    <div class="about-copy" data-reveal>
+      <h2 id="about-heading">Run by students</h2>
+      <p class="lede">
+        Every ARC organizer is a junior high or high school student volunteer. We write the problems
+        and teach the workshops ourselves.
+      </p>
+      <p>
+        A group of high school students started ARC in Calgary in May 2023, and it became an
+        incorporated Alberta nonprofit in October 2024. The Rocky Mountain Junior Science Contest is
+        older than we are. Another group of students started it in 2020 because Calgary had plenty
+        of math contests and very few science ones. We partnered with them in 2024 and have run it
+        since.
+      </p>
+      <p>We recruit new organizers every summer for our content, marketing and outreach teams.</p>
+      <p class="about-links">
+        <a class="arrow-link" href="/about/">Meet the team <Icon name="arrow" /></a>
+        <a class="arrow-link" href="/about/#join">How to join <Icon name="arrow" /></a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section faq-band" aria-labelledby="faq-heading">
+    <div class="wrap faq-layout">
+      <div class="faq-head" data-reveal>
+        <h2 id="faq-heading">For parents and teachers</h2>
+        <p class="lede">
+          Teachers can email <a href={`mailto:${site.email}`}>{site.email}</a> for event details to share
+          with their students.
+        </p>
+      </div>
+      <div class="faq-list">
+        {
+          faq.map((item) => (
+            <details data-reveal>
+              <summary>
+                <span>{item.q}</span>
+              </summary>
+              <div class="details-body">
+                <p>{item.a}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="updates" aria-labelledby="updates-heading">
+    <div class="wrap updates-inner">
+      <div data-reveal>
+        <h2 id="updates-heading">Get event dates by email</h2>
+        <p>
+          We announce new events and open registration in our newsletter. We also post on Instagram,
+          and you can ask us anything on Discord.
+        </p>
+      </div>
+      <p class="updates-actions" data-reveal>
+        <a class="button" href={site.newsletter}>Join the newsletter</a>
+        <a class="button button-ghost" href={site.instagram}>Instagram</a>
+        <a class="button button-ghost" href={site.discord}>Discord</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Opening: a pale teal band shared with the header. */
+
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(40% 55% at 82% 60%, rgb(255 255 255 / 0.8), transparent 70%),
+      var(--tint);
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    grid-template-areas:
+      'copy collage'
+      'next next';
+    align-items: center;
+    column-gap: clamp(2rem, 4vw, 4rem);
+    row-gap: clamp(2.5rem, 5vw, 4rem);
+    padding-top: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .hero-copy {
+    grid-area: copy;
+  }
+
+  h1 {
+    hyphens: manual;
+  }
+
+  h1 .accent {
+    color: var(--teal);
+  }
+
+  .hero-copy .lede {
+    margin-top: var(--space-5);
+    max-width: 30em;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  /* Next event: a white card that hangs over the bottom edge of the band. */
+
+  .next {
+    grid-area: next;
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 19.5rem);
+    align-items: stretch;
+    margin-bottom: -5rem;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    color: var(--ink);
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      var(--shadow-2);
+  }
+
+  .date-tile {
+    display: grid;
+    place-items: center;
+    min-width: 10rem;
+    padding: var(--space-5);
+    background: var(--teal);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .date-tile time {
+    display: grid;
+    line-height: 1;
+  }
+
+  .date-month {
+    font-size: var(--text-sm);
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .date-day {
+    font-family: var(--font-display);
+    font-size: clamp(3.25rem, 2.5rem + 3vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .date-rest {
+    margin-top: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 600;
+  }
+
+  .next-body {
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .next h2 {
+    font-size: inherit;
+    letter-spacing: 0;
+    line-height: 1.3;
+  }
+
+  .next-label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  .next-count {
+    padding: 0.1rem 0.6rem;
+    border-radius: 999px;
+    background: var(--wash);
+    color: var(--teal-strong);
+    font-size: var(--text-xs);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .next-name {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .next dl {
+    display: grid;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .next dl div {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--space-3);
+  }
+
+  .next dt {
+    flex: 0 0 3.5rem;
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    line-height: 1.75;
+  }
+
+  .next dd {
+    flex: 1 1 12rem;
+    font-weight: 600;
+  }
+
+  .next-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    padding-left: 0;
+  }
+
+  .next-note {
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+    line-height: 1.45;
+  }
+
+  .next-closed {
+    font-weight: 600;
+  }
+
+  /* Photo stack */
+
+  .collage {
+    grid-area: collage;
+    position: relative;
+    width: 100%;
+    max-width: 35rem;
+    margin-inline: auto;
+    aspect-ratio: 10 / 8.4;
+  }
+
+  .collage-item {
+    position: absolute;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow:
+      0 0 0 6px var(--tint),
+      0 22px 40px -20px rgb(14 31 29 / 0.45);
+    transition:
+      rotate var(--dur) var(--ease-glide),
+      scale var(--dur) var(--ease-glide);
+  }
+
+  .collage-item :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .c-main {
+    top: 0;
+    right: 0;
+    width: 74%;
+    aspect-ratio: 5 / 4;
+  }
+
+  .c-two {
+    left: 0;
+    bottom: 0;
+    width: 48%;
+    aspect-ratio: 4 / 3;
+    rotate: -4deg;
+  }
+
+  .c-three {
+    right: 5%;
+    bottom: 3%;
+    width: 31%;
+    aspect-ratio: 1;
+    rotate: 3deg;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .collage-item:hover {
+      rotate: 0deg;
+      scale: 1.04;
+      z-index: 3;
+    }
+  }
+
+  /* What we run */
+
+  .programs {
+    padding-top: calc(var(--section) + 5rem);
+  }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .span-7 {
+    grid-column: span 7;
+  }
+
+  .span-5 {
+    grid-column: span 5;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      var(--shadow-1);
+    transition:
+      transform var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
+  }
+
+  .card-media {
+    position: relative;
+    overflow: hidden;
+    height: clamp(13rem, 24vw, 21rem);
+  }
+
+  .card-media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 900ms var(--ease-glide);
+  }
+
+  .card-date {
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-4);
+    min-height: 2rem;
+    font-size: var(--text-sm);
+    box-shadow: 0 2px 8px rgb(14 31 29 / 0.22);
+  }
+
+  .card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .card-body p {
+    color: var(--ink-soft);
+    max-width: 38em;
+  }
+
+  .card-body .pills {
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+
+  /* The whole card is the link. */
+  .card h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .card h3 :global(svg) {
+    display: inline;
+    vertical-align: -0.1em;
+    margin-left: 0.2em;
+    color: var(--teal);
+    transition: translate var(--dur) var(--ease-out);
+  }
+
+  .card:has(h3 a:focus-visible) {
+    outline: 3px solid var(--teal);
+    outline-offset: 3px;
+  }
+
+  .card h3 a:focus-visible {
+    outline: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card:has(h3 a):hover {
+      transform: translateY(-5px);
+      box-shadow:
+        inset 0 0 0 1px var(--line),
+        var(--shadow-2);
+    }
+
+    .card:hover .card-media :global(img) {
+      scale: 1.05;
+    }
+
+    .card:hover h3 :global(svg) {
+      translate: 5px 0;
+    }
+  }
+
+  .card-tint {
+    background: var(--tint);
+    box-shadow: none;
+  }
+
+  .card-tint .card-label {
+    margin-top: auto;
+    font-size: var(--text-sm);
+    font-weight: 650;
+    color: var(--ink);
+  }
+
+  .card-tint .pills {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .card-new {
+    background: var(--mist);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+
+  .card-new .button {
+    position: relative;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  /* Sample problem */
+
+  .problem-band {
+    background: var(--mist);
+  }
+
+  .problem {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: clamp(1rem, 3.5vw, 3rem);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      var(--shadow-2);
+  }
+
+  .problem header {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .rhythm {
+    margin-top: var(--space-5);
+  }
+
+  .beats {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+    max-width: 28rem;
+  }
+
+  .beats :global(span) {
+    display: grid;
+    place-items: center;
+    height: 3rem;
+    border-radius: 8px;
+    background: var(--wash);
+    box-shadow: inset 0 0 0 1.5px var(--teal);
+    color: var(--teal-strong);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .beats :global(.long) {
+    grid-column: span 2;
+    background: var(--teal);
+    box-shadow: inset 0 0 0 1.5px var(--teal-strong);
+    color: var(--white);
+  }
+
+  .rhythm figcaption {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .rhythm-next[hidden] {
+    display: none;
+  }
+
+  .credit {
+    margin-top: var(--space-5);
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .parts li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .parts li:first-child {
+    padding-top: 0;
+  }
+
+  .parts li > div {
+    min-width: 0;
+  }
+
+  .points {
+    display: grid;
+    place-items: center;
+    min-width: 3.25rem;
+    height: 2rem;
+    padding-inline: 0.6rem;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--white);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .check {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    margin-top: var(--space-3);
+  }
+
+  .check[hidden] {
+    display: none;
+  }
+
+  .check input {
+    width: min(8.5rem, 100%);
+    min-height: 2.75rem;
+    padding: 0 var(--space-3);
+    border: 1.5px solid #7d918c;
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    color: var(--ink);
+    font: inherit;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .check input::placeholder {
+    color: #5d6f6a;
+  }
+
+  .check input:focus-visible {
+    border-color: var(--teal);
+    outline-offset: 1px;
+  }
+
+  .check-result {
+    font-weight: 650;
+  }
+
+  .check:global(.is-right) input {
+    border-color: var(--teal);
+    background: var(--wash);
+  }
+
+  .check:global(.is-right) .check-result {
+    color: var(--teal-strong);
+  }
+
+  .check:global(.is-wrong) .check-result {
+    color: #8a2a12;
+  }
+
+  .problem details {
+    margin-top: var(--space-5);
+  }
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .problem summary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 2px var(--teal);
+    color: var(--teal-strong);
+    font-weight: 650;
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .problem summary:hover {
+    background: var(--wash);
+  }
+
+  /* A chevron that flips when the answer is open. */
+  summary::after {
+    content: '';
+    flex: none;
+    width: 0.5em;
+    height: 0.5em;
+    margin-left: 0.7em;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    rotate: 45deg;
+    translate: 0 -0.15em;
+    transition:
+      rotate var(--dur) var(--ease-out),
+      translate var(--dur) var(--ease-out);
+  }
+
+  details[open] > summary::after {
+    rotate: -135deg;
+    translate: 0 0.12em;
+  }
+
+  .problem .details-body p {
+    margin-top: var(--space-4);
+  }
+
+  /* Contest day */
+
+  .day-photo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .day-photo :global(img) {
+    width: 100%;
+    height: clamp(18rem, 40vw, 36rem);
+    object-fit: cover;
+    object-position: 50% 62%;
+  }
+
+  .day-photo figcaption {
+    position: absolute;
+    left: var(--gutter);
+    top: var(--space-4);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: rgb(14 31 29 / 0.78);
+    color: var(--white);
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+
+  .day {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: -5rem;
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      var(--shadow-2);
+  }
+
+  .day li {
+    padding: clamp(1.25rem, 2.2vw, 2rem);
+  }
+
+  .day li + li {
+    border-left: 1px solid var(--line);
+  }
+
+  .day h3 {
+    font-size: var(--text-lg);
+  }
+
+  .day h3::before {
+    content: '';
+    display: block;
+    width: 2.25rem;
+    height: 5px;
+    margin-bottom: var(--space-4);
+    border-radius: 999px;
+    background: var(--teal);
+  }
+
+  .day p {
+    margin-top: var(--space-2);
+    color: var(--ink-soft);
+  }
+
+  /* Free band */
+
+  .free-band {
+    background: var(--mist);
+  }
+
+  .free-figures {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .free-figures li {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-5);
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      var(--shadow-1);
+  }
+
+  .figure {
+    font-family: var(--font-display);
+    font-size: var(--text-figure);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--teal);
+  }
+
+  .figure-label {
+    color: var(--ink-soft);
+  }
+
+  .supporters-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--line);
+  }
+
+  .supporters-row h3 {
+    margin-bottom: var(--space-3);
+    font-family: var(--font);
+    font-size: var(--text-sm);
+    font-weight: 650;
+    letter-spacing: 0;
+    color: var(--ink-soft);
+  }
+
+  /* About */
+
+  .about {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  .about-photo {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    rotate: -1.5deg;
+    box-shadow: var(--shadow-2);
+  }
+
+  .about-photo :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .about-photo figcaption {
+    position: absolute;
+    left: var(--space-4);
+    bottom: var(--space-4);
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    background: rgb(14 31 29 / 0.78);
+    color: var(--white);
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+
+  .about-copy .lede {
+    margin-top: var(--space-4);
+  }
+
+  .about-copy p:not(.lede) {
+    margin-top: var(--space-4);
+    max-width: 36em;
+  }
+
+  .about-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-6);
+  }
+
+  /* Questions */
+
+  .faq-band {
+    background: var(--mist);
+  }
+
+  .faq-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .faq-head .lede {
+    margin-top: var(--space-4);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .faq-list details {
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow:
+      inset 0 0 0 1px var(--line),
+      var(--shadow-1);
+  }
+
+  .faq-list summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 3.75rem;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .faq-list summary:hover {
+    color: var(--teal-strong);
+  }
+
+  .faq-list .details-body {
+    padding: 0 var(--space-5) var(--space-5);
+    color: var(--ink-soft);
+    max-width: 44em;
+  }
+
+  /* Sign-up band */
+
+  .updates {
+    background: var(--tint);
+  }
+
+  .updates-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-6) clamp(2rem, 5vw, 4.5rem);
+    padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+
+  .updates-inner > div > p {
+    margin-top: var(--space-4);
+    max-width: 34em;
+    color: var(--ink-soft);
+    font-size: var(--text-lg);
+    line-height: 1.5;
+  }
+
+  .updates-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-3);
+  }
+
+  /* High-contrast mode keeps the shapes that colour normally carries. */
+  @media (forced-colors: active) {
+    .next,
+    .card,
+    .problem,
+    .day,
+    .faq-list details,
+    .free-figures li {
+      border: 1px solid CanvasText;
+    }
+
+    .beats :global(span) {
+      border: 2px solid CanvasText;
+    }
+
+    .beats :global(.long) {
+      forced-color-adjust: none;
+      background: CanvasText;
+      color: Canvas;
+    }
+
+    .points {
+      border: 1px solid CanvasText;
+    }
+  }
+
+  /* Smaller screens */
+
+  @media (max-width: 72rem) {
+    .day {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .day li:nth-child(3) {
+      border-left: 0;
+    }
+
+    .day li:nth-child(n + 3) {
+      border-top: 1px solid var(--line);
+    }
+
+    .free-figures {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 62rem) {
+    .next {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .next-actions {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0 clamp(1.25rem, 2.5vw, 2rem) clamp(1.25rem, 2.5vw, 2rem);
+    }
+
+    .next-note {
+      flex-basis: 100%;
+    }
+
+    .span-7,
+    .span-5 {
+      grid-column: span 6;
+    }
+
+    .updates-inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .updates-actions {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 52rem) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        'copy'
+        'next'
+        'collage';
+      row-gap: var(--space-5);
+      padding-top: var(--space-5);
+      padding-bottom: var(--space-7);
+    }
+
+    .hero-actions {
+      display: none;
+    }
+
+    .hero-copy .lede {
+      margin-top: var(--space-4);
+    }
+
+    .next {
+      grid-template-columns: minmax(0, 1fr);
+      margin-bottom: 0;
+    }
+
+    .date-tile {
+      min-width: 0;
+      padding: var(--space-3) var(--space-5);
+      justify-items: start;
+    }
+
+    .date-tile time {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 var(--space-2);
+      text-align: left;
+    }
+
+    .date-day {
+      font-size: 2.25rem;
+    }
+
+    .date-month {
+      font-size: var(--text-base);
+    }
+
+    .next-actions {
+      padding-top: 0;
+    }
+
+    .next-actions .button {
+      width: 100%;
+    }
+
+    .collage {
+      max-width: 30rem;
+    }
+
+    .programs {
+      padding-top: var(--section);
+    }
+
+    /* One column: twelve tracks with gaps would be wider than a phone at large text sizes. */
+    .bento {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .span-7,
+    .span-5 {
+      grid-column: auto;
+    }
+
+    .problem,
+    .about,
+    .faq-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .day-photo :global(img) {
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-position: 55% 70%;
+    }
+
+    .day {
+      margin-top: -3rem;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .day,
+    .free-figures {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .day li + li {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .free-figures li {
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: baseline;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .updates-actions .button,
+    .supporters-row .button {
+      width: 100%;
+    }
+  }
+</style>

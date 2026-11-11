@@ -1,0 +1,23 @@
+---
+// One small icon set, drawn at the same stroke weight so they match.
+interface Props {
+  name: 'arrow' | 'external' | 'menu' | 'close';
+}
+const { name } = Astro.props;
+---
+
+<svg
+  class="icon"
+  viewBox="0 0 20 20"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.9"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {name === 'arrow' && <path d="M4 10h12M11 5l5 5-5 5" />}
+  {name === 'external' && <path d="M8 5H5v10h10v-3M11 4h5v5M16 4l-7 7" />}
+  {name === 'menu' && <path d="M3 6h14M3 10h14M3 14h14" />}
+  {name === 'close' && <path d="M5 5l10 10M15 5L5 15" />}
+</svg>
