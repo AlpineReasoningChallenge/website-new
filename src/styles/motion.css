@@ -92,7 +92,7 @@
   }
 }
 
-/* 2. Section headings rise in once as they reach the screen (the script adds the classes). */
+/* 2. The one heading marked data-reveal rises in once as it reaches the screen (the script adds the classes). */
 
 .reveal-pending {
   opacity: 0;

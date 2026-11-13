@@ -1,70 +1,68 @@
 ---
 name: Alpine Reasoning Challenge
-description: White pages, near-black ink and one teal; the liveliness comes from real photos, large type, overlapping cards and motion.
+description: One frost-white page, ink from the logo's night sky, the logo's teal as the only accent, and ARC's logo built in 3D as the single moving idea.
 colors:
-  white: "#ffffff"
-  ink: "#0e1f1d"
-  ink-soft: "#465753"
-  line: "#d9e3e1"
-  mist: "#f3f7f6"
-  tint: "#e9f6f2"
-  wash: "#d8f0e9"
+  ground: "#eef3f3"
+  surface: "#ffffff"
+  surface-soft: "#f6f9f9"
+  line: "#d3dedf"
+  line-soft: "#e2e9ea"
+  ink: "#0c1a1f"
+  ink-2: "#42535a"
+  ink-3: "#5b6b71"
   teal: "#0b7566"
-  teal-strong: "#095b50"
-  teal-bright: "#52d5bf"
-  deep: "#0b2622"
-  on-deep: "#e6f2ef"
-  on-deep-soft: "#bfd9d3"
+  teal-deep: "#085a4f"
+  teal-logo: "#52d5bf"
+  teal-wash: "#d9f1eb"
+  night: "#0b1a1f"
+  on-night: "#e4efee"
+  on-night-2: "#a9bfbd"
 typography:
   display:
-    fontFamily: "Bricolage Grotesque Variable, Figtree Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "min(clamp(2.375rem, 1.2rem + 4.6vw, 4.25rem), 13vw)"
-    fontWeight: 750
-    lineHeight: 0.98
-    letterSpacing: "-0.035em"
-  headline:
-    fontFamily: "Bricolage Grotesque Variable, Figtree Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2rem, 1.35rem + 2.6vw, 3.25rem)"
-    fontWeight: 700
-    lineHeight: 1.04
-    letterSpacing: "-0.03em"
-  title:
-    fontFamily: "Bricolage Grotesque Variable, Figtree Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem)"
-    fontWeight: 650
-    lineHeight: 1.15
-    letterSpacing: "-0.015em"
-  figure:
-    fontFamily: "Bricolage Grotesque Variable, Figtree Variable, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.75rem, 2rem + 3vw, 4rem)"
-    fontWeight: 800
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+    fontSize: "min(clamp(2.5rem, 1.4rem + 3.9vw, 4.375rem), 12vw)"
+    fontWeight: 640
     lineHeight: 1
-    letterSpacing: "-0.03em"
+    letterSpacing: "-0.04em"
+    fontVariation: "'wdth' 108"
+  headline:
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+    fontSize: "clamp(2rem, 1.3rem + 2.4vw, 3.125rem)"
+    fontWeight: 620
+    lineHeight: 1.05
+    letterSpacing: "-0.032em"
+    fontVariation: "'wdth' 106"
+  title:
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+    fontSize: "clamp(1.25rem, 1.15rem + 0.45vw, 1.45rem)"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "-0.015em"
+    fontVariation: "'wdth' 104"
   lede:
-    fontFamily: "Figtree Variable, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem)"
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+    fontSize: "clamp(1.125rem, 1.06rem + 0.3vw, 1.25rem)"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.55
   body:
-    fontFamily: "Figtree Variable, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
   small:
-    fontFamily: "Figtree Variable, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
     fontSize: "0.9375rem"
     fontWeight: 400
-    lineHeight: 1.45
+    lineHeight: 1.6
   label:
-    fontFamily: "Figtree Variable, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
     fontSize: "0.8125rem"
-    fontWeight: 650
-    lineHeight: 1.3
+    fontWeight: 500
+    lineHeight: 1.6
 rounded:
-  radius-sm: "10px"
-  radius: "16px"
-  radius-lg: "24px"
-  pill: "999px"
+  sm: "10px"
+  md: "14px"
+  lg: "22px"
 spacing:
   space-1: "0.25rem"
   space-2: "0.5rem"
@@ -73,94 +71,55 @@ spacing:
   space-5: "1.5rem"
   space-6: "2rem"
   space-7: "3rem"
-  space-8: "4rem"
-  section: "clamp(4rem, 2.5rem + 6vw, 8rem)"
-  gutter: "clamp(1rem, 4vw, 2rem)"
-  wrap: "74rem"
+  space-8: "4.5rem"
+  section: "clamp(5rem, 3rem + 7vw, 9.5rem)"
+  gutter: "clamp(1rem, 4vw, 2.5rem)"
+  wrap: "76rem"
 components:
   button-primary:
     backgroundColor: "{colors.teal}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.pill}"
-    padding: "0.65rem 1.4rem"
+    textColor: "{colors.surface}"
+    typography: "{typography.body}"
+    rounded: "{rounded.sm}"
+    padding: "0.7rem 1.25rem"
     height: "3rem"
-  button-ghost:
-    backgroundColor: "transparent"
-    textColor: "{colors.teal-strong}"
-    rounded: "{rounded.pill}"
-    padding: "0.65rem 1.4rem"
+  button-primary-hover:
+    backgroundColor: "{colors.teal-deep}"
+    textColor: "{colors.surface}"
+  button-quiet:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.sm}"
+    padding: "0.7rem 1.25rem"
     height: "3rem"
-  button-ghost-hover:
-    backgroundColor: "{colors.wash}"
-    textColor: "{colors.teal-strong}"
+  button-quiet-hover:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.teal-deep}"
   button-small:
-    rounded: "{rounded.pill}"
-    padding: "0.45rem 1.1rem"
-    height: "2.75rem"
     typography: "{typography.small}"
-  pill:
-    backgroundColor: "{colors.wash}"
-    textColor: "{colors.teal-strong}"
-    typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "0.15rem 0.75rem"
-    height: "1.75rem"
-  pill-white:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-  pill-teal:
-    backgroundColor: "{colors.teal}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.pill}"
-  card:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.radius-lg}"
-    padding: "clamp(1.25rem, 2.5vw, 2rem)"
-  card-tint:
-    backgroundColor: "{colors.tint}"
-    rounded: "{rounded.radius-lg}"
-  card-quiet:
-    backgroundColor: "{colors.mist}"
-    rounded: "{rounded.radius-lg}"
-  date-tile:
-    backgroundColor: "{colors.teal}"
-    textColor: "{colors.white}"
-    padding: "1.5rem"
-    width: "10rem"
-  faq-item:
-    backgroundColor: "{colors.white}"
-    rounded: "{rounded.radius}"
-    padding: "0.75rem 1.5rem"
-    height: "3.75rem"
-  input-answer:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.radius-sm}"
-    padding: "0 0.75rem"
-    height: "2.75rem"
-    width: "8.5rem"
-  arrow-link:
-    textColor: "{colors.teal}"
-    height: "2.75rem"
-  rhythm-beat:
-    backgroundColor: "{colors.wash}"
-    textColor: "{colors.teal-strong}"
-    height: "3rem"
-  rhythm-beat-long:
-    backgroundColor: "{colors.teal}"
-    textColor: "{colors.white}"
-    height: "3rem"
+    padding: "0.45rem 0.95rem"
+    height: "2.5rem"
   nav-link:
-    textColor: "{colors.ink}"
+    textColor: "{colors.ink-2}"
     typography: "{typography.small}"
-    height: "2.75rem"
-  nav-link-active:
-    textColor: "{colors.teal-strong}"
+    rounded: "{rounded.sm}"
+    padding: "0 0.8rem"
+    height: "2.5rem"
+  panel:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.lg}"
+    padding: "clamp(1.25rem, 3.5vw, 2.75rem)"
+  input-answer:
+    backgroundColor: "{colors.surface-soft}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.sm}"
+    padding: "0 0.75rem"
+    height: "2.5rem"
+  input-answer-right:
+    backgroundColor: "{colors.teal-wash}"
   footer:
-    backgroundColor: "{colors.deep}"
-    textColor: "{colors.on-deep}"
+    backgroundColor: "{colors.night}"
+    textColor: "{colors.on-night}"
     typography: "{typography.small}"
 ---
 
@@ -168,194 +127,188 @@ components:
 
 ## Overview
 
-**Creative North Star: "White Page, One Teal"**
+**Creative North Star: "One Frost Page, One Moving Logo"**
 
-A lively youth-nonprofit site whose energy comes from layout, real event photos, large type and motion, never from colour. Every page sits on white with near-black ink, and a single teal does all the work of buttons, links, dates and emphasis. Pale teal and pale grey-teal bands separate sections; the only dark surface on the site is the footer. Nothing is themed: there is no storytelling concept to explain, only plain sections that say what ARC runs and how to take part.
+The whole site is one cool frost-white page with near-black ink and a single teal. Sections don't get their own colours. They are separated by space and hairline rules, not by bands. Content that is a single thing (the next event, a sample problem, the closing sign-up) sits on a white panel with a hairline inset and a soft ink-tinted haze. Lists are ruled rows. Type is Mona Sans throughout: headings set slightly wide and tightly tracked, body text plain and readable at 17px.
 
-The page feels generous and friendly rather than corporate. Headlines are big, heavy and tightly set in Bricolage Grotesque; body copy is relaxed Figtree at a slightly large 17px. White cards with 24px corners, a hairline edge and a soft shadow carry content, and they often overlap the band above them (the next-event card hangs over the bottom of the opening band; the day strip rides up over the full-width photo). Photos are allowed a little play: the opening stack is rotated a few degrees, the organizer photo leans by 1.5 degrees, and captions sit on dark translucent pills.
+All the liveliness lives in one place: ARC's logo built in three.js. It has faceted snow peaks with teal left faces, a four-point star with a soft halo, a tapered arc that draws itself, and a few sparkles. It sits on a fixed canvas behind the page, rests in the right-hand lane beside the headline, and flies down that lane when a later section asks for it (on the home page it becomes the sample problem's rhythm). Everything else stays quiet. Only the headline blurs in word by word, and only one section heading rises in. Smooth wheel scrolling makes the page glide.
 
-Motion is part of the world, but it only ever adds a starting state. The resting state of every element is its normal, fully visible style, so a page with no JavaScript, with reduced motion turned on, or printed, is complete and static. Entrances rise and settle with no bounce; hover lifts cards and buttons slightly; the sample problem's rhythm row fills beat by beat. These constraints come from the owner and are binding: the richer layout and motion stay, the palette stays white and teal, and dark or saturated colour bands, amber, and themed concepts were each tried and rejected.
+The owner has rejected four looks: a themed "trail guide" concept ("super gimmicky"), a plain white page with no motion ("a bit bland"), a dark teal and amber rebuild with card grids, badges and stat tiles ("looks like ai slop"), and a cluttered build that felt "toyish" and "vibecoded". This system is the answer to all four: calm, professional, plainly ARC's colours, with one piece of motion worth looking at.
 
 **Key Characteristics:**
-- White ground, near-black ink, one teal; pale tints for bands, never dark or saturated ones.
-- Bricolage Grotesque headings over Figtree text; big, heavy, tightly tracked headlines.
-- White cards with 24px corners, a 1px inset hairline and a soft layered shadow, often overlapping the band above.
-- Pill-shaped teal buttons with a darker lower edge that lift on hover and press on click.
-- Real event photos, full-bleed or slightly rotated.
-- Motion that only adds a starting state; everything is visible without it.
+- One frost ground (#eef3f3) behind every section. The only dark band is the night footer.
+- Ink and accents come from the logo: night-spruce ink, a text-safe teal for actions, the logo's bright teal only on night and in the 3D scene.
+- Mona Sans only. Its width axis widens as headings grow (104% to 110%).
+- Hairline-ruled rows for lists, white panels for single objects, no card grids.
+- One signature motion (the 3D logo scene), one headline blur-in, one heading reveal.
+- The page is complete without JavaScript, without WebGL and with reduced motion on.
 
 ## Colors
 
-A cool white-and-teal palette: three near-white surfaces, two inks, one working teal with a darker partner, and a dark footer that is the only place the bright logo teal appears.
+A cool, almost monochrome palette taken from ARC's logo: frost and white for paper, the night sky for ink, and one teal in two strengths.
 
 ### Primary
-- **Working Teal** (`teal`): the single accent. Primary button fill, link colour, the date tile, the first word of the home headline ("Free"), the `$0` figures, the arrow icons inside card titles, the day-strip bars, the 3px focus outline and the 2px outline of ghost buttons. White text on it passes AA (5.6:1).
-- **Deep Teal** (`teal-strong`): link and nav hover colour, the lower edge of primary buttons, ghost button text, pill text, and any teal text that sits on a tint or wash (7.2:1 on tint, 6.7:1 on wash).
-
-### Secondary
-- **Logo Teal** (`teal-bright`): the hand-drawn logo's teal. Used where the background is dark (footer column headings, footer link hover, the focus outline inside `.on-dark`) and, as the one exception, as the text-selection highlight behind ink text. Never as text, a fill or a button on a light surface.
+- **ARC Teal** (teal): the one accent on light surfaces. Filled buttons, links, the next event's day number, the upcoming program's date, problem point values, the focus ring and the caret. Safe for text on frost and white.
+- **Deep Teal** (teal-deep): hover and pressed state for teal buttons and links, and the "Correct." result text.
+- **Logo Teal** (teal-logo): the logo's own bright teal. Used on the night footer (column labels, link hover, focus ring) and inside the 3D scene. On light surfaces it appears only where no text sits on it: the text-selection highlight and the ring around the beat that is playing.
+- **Teal Wash** (teal-wash): the fill of an answer box that was checked as correct. Nowhere else.
 
 ### Neutral
-- **White** (`white`): the page ground, every card, and text on teal.
-- **Ink** (`ink`): all headings and body text (17:1 on white). Also the dark fill of the problem's point chips.
-- **Soft Ink** (`ink-soft`): ledes, card descriptions, captions, labels such as "Where / Who / Cost", and other secondary text (7.6:1 on white, 7.1:1 on mist).
-- **Hairline** (`line`): 1px card edges (drawn as an inset shadow), dividers between list rows, day-strip cells and the supporters row.
-- **Mist** (`mist`): the alternating pale grey-teal band (sample problem, "Sponsors keep it free", FAQ) and the quiet "New this school year" card.
-- **Tint** (`tint`): the pale teal of the opening band and the closing sign-up band. The header shares it, the tinted program card uses it, and it forms the 6px ring around each opening photo. It is also the browser `theme-color`.
-- **Wash** (`wash`): small teal fills: pills, the countdown chip, short rhythm beats, ghost-button hover, the correct-answer input.
-- **Footer Deep** (`deep`), **On Deep** (`on-deep`), **On Deep Soft** (`on-deep-soft`): the footer's ground, link text and secondary text. These three exist only for the footer.
-
-Single-use literals that are not tokens yet (all in the home page's scoped styles): the answer input's border (`#7d918c`) and placeholder (`#5d6f6a`), and the wrong-answer message (`#8a2a12`, a dark rust used only for that error state). Translucent ink (`rgb(14 31 29 / 0.78)`) is the photo-caption pill.
+- **Cool Frost** (ground): the one page colour, on `html` and `body`, and the browser theme colour. Every section shows it.
+- **Panel White** (surface): white panels (next event, problem, closing sign-up), quiet buttons, the header bar (at 94% to 97% opacity under a blur) and the hover fill of a program row.
+- **Faint Frost** (surface-soft): inset fills such as short beats and the answer field.
+- **Hairline** (line): rules between rows, section dividers, quiet-button and program-arrow outlines.
+- **Soft Hairline** (line-soft): rules and insets inside white panels.
+- **Night Spruce** (ink): headings, names, values and problem text. Taken from the night sky behind the logo.
+- **Slate Ink** (ink-2): body text and ledes.
+- **Mist Ink** (ink-3): captions, meta lines, labels, dates of past events.
+- **Night Sky** (night): the footer, and only the footer.
+- **Moonlit Frost** (on-night) and **Dim Frost** (on-night-2): primary and secondary text on the footer.
 
 ### Named Rules
-**The One Teal Rule.** Teal is the only accent. There is no second brand colour, no amber, no gradient between hues. The single non-teal colour on the site is the wrong-answer message, and it exists only as an error state.
+**The One Frost Ground Rule.** Every page uses `--ground` as its only page colour, and sections never set a background of their own. The fixed 3D canvas sits behind `main`, so a section background would hide the scene and break the one-page feel. Separate sections with `--section` spacing or a `--line` hairline instead.
 
-**The Pale Bands Rule.** Content bands between the header and the footer are white, mist or tint, and nothing else. The home page alternates them: tint, white, mist, white, mist, white, mist, tint. The header is tint on every page, so the first band under it is tint, and later bands alternate from there. Dark or saturated bands were tried and rejected by the owner.
+**The Two Teals Rule.** Text and actions on light surfaces use `--teal`. The bright `--teal-logo` never carries text on frost or white. It belongs on the night footer, inside the 3D scene, and in the two text-free highlights it already marks.
 
-**The Footer-Only Dark Rule.** `deep` is the footer's colour and the footer's alone. Dark appears in page content only at small scale: ink point chips and translucent-ink caption pills laid over photos.
+**The Night Footer Only Rule.** `--night` is the footer's colour. No other band, section or hero is dark or saturated.
 
 ## Typography
 
-**Display Font:** Bricolage Grotesque Variable (falls back to Figtree, then system sans)
-**Body Font:** Figtree Variable (with ui-sans-serif, system-ui, Segoe UI)
+**Display Font:** Mona Sans Variable (falls back to ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif)
+**Body Font:** Mona Sans Variable (same stack)
 
-**Character:** A chunky, slightly quirky grotesque for headings and big numbers over a round, friendly, very readable sans for everything else. Both are self-hosted variable fonts (preloaded in the layout), so in-between weights like 550, 650 and 750 are real.
+**Character:** A single grotesque used two ways. Headings are wide (font-stretch 104% to 110%) and tightly tracked so they read as confident and engineered. Body text stays at normal width and weight 400 so it is easy to read and to machine-translate.
 
 ### Hierarchy
-- **Display** (750, `min(clamp(2.375rem … 4.25rem), 13vw)`, line-height 0.98, -0.035em): the one `h1` per page. The 13vw cap keeps long words inside a phone when text is enlarged. Balanced wrapping. On the home page the first word is coloured teal.
-- **Headline** (700, 2rem to 3.25rem, line-height 1.04, -0.03em): every section `h2`.
-- **Title** (650, 1.25rem to 1.5rem, line-height 1.15, -0.015em): card titles and other `h3`s. Day-strip titles and FAQ questions drop to the lede size (1.125rem to 1.25rem) at the same family and weight.
-- **Figure** (800, 2.75rem to 4rem, line-height 1, -0.03em, teal): large numbers such as the `$0` tiles. The date tile's day number is the same treatment, a little larger (3.25rem to 4.5rem, -0.04em, tabular figures).
-- **Lede** (Figtree 400, 1.125rem to 1.25rem, line-height 1.5, soft ink, max 36em): the sentence or two under every section heading.
-- **Body** (Figtree 400, 1.0625rem, line-height 1.6): paragraphs. Card text caps at 38em, long-form text at 36em, FAQ answers at 44em.
-- **Small** (Figtree, 0.9375rem): nav links (weight 550), small buttons, captions, notes, the footer.
-- **Label** (Figtree 650, 0.8125rem, line-height 1.3): pills. Photo captions use the same size at 600. Sentence case, no tracking.
-
-Interface emphasis inside body text is Figtree at 600 to 700 (buttons and arrow links 650, fact values 600). Numbers that change or line up use `font-variant-numeric: tabular-nums`.
+- **Display** (h1): the page headline, one per page. On the home page it is capped further at 7.6vh above 52rem so the next-event panel stays in view on short laptops, and at 10.8vw below 36rem. Max width about 15ch, balanced wrapping.
+- **Headline** (h2): section headings, balanced wrapping. Put one in each section head, with an optional lede under it.
+- **Title** (h3): card-less item titles such as program names and the problem title. In the contest-day list it drops to the lede size.
+- **Lede**: the paragraph under a section heading, max 34em.
+- **Body**: running text at line height 1.6, colour Slate Ink, pretty wrapping. About-page style copy is capped at 36em.
+- **Small**: captions, meta lines, footer text, nav links (weight 520), small buttons.
+- **Label**: field labels in the next-event panel (weight 500, Mist Ink) and the countdown.
+- **Date figure** (next event day only): clamp(3.25rem, 2.6rem + 2.4vw, 4.5rem), weight 640, width 110%, letter spacing -0.05em, tabular numbers, ARC Teal.
 
 ### Named Rules
-**The Two Families Rule.** Bricolage Grotesque is for `h1`–`h3`, the brand name, FAQ questions and big figures. Everything else, including small headings such as list labels, is Figtree.
+**The One Family Rule.** Mona Sans is the only typeface. Hierarchy comes from size, weight (400 to 640) and the width axis, never from a second family.
 
-**The Heading-Then-Lede Rule.** A section opens with its `h2` and then a lede, inside a block capped at 46rem. Nothing sits above the heading: no small label, tag or category line.
+**The Wider-As-Larger Rule.** The width axis grows with size: 100% for body, 104% for titles and list names, 106% for section headings and the brand name, 108% for the headline, 110% for the date figure. Tracking tightens the same way, from -0.015em down to -0.05em.
+
+**The Tabular Figures Rule.** Dates, counts, points and beats use `font-variant-numeric: tabular-nums`.
 
 ## Layout
 
-- **Container:** content sits in a centred wrap of 74rem plus a gutter of 1rem to 2rem each side. Only full-bleed photos and band backgrounds break out of it.
-- **Section rhythm:** each band has vertical padding of `section` (4rem on phones to 8rem on wide screens). The section heading block keeps 2rem to 3.5rem below it. The closing sign-up band is tighter (3rem to 5.5rem).
-- **Spacing scale:** 4, 8, 12, 16, 24, 32, 48, 64px (`space-1` to `space-8`). Card padding is fluid, 1.25rem to 2rem. Gaps between cards are 1.5rem.
-- **Grids:** a 12-column bento for cards (7 + 5 spans, alternating); 5fr / 7fr splits for text beside an interactive or list column (sample problem, FAQ); 1fr / 1fr for photo beside copy (about); four equal cells for the day strip and the figure tiles.
-- **The hang-over:** a white card may cross the edge of the band above it by pulling up with a negative margin (the next-event card hangs 5rem below the opening band, and the next section adds 5rem to its top padding to make room; the day strip rides 5rem, or 3rem on phones, up over the full-width photo). Content of the overlapped band is never covered.
-- **Breakpoints** (written as literal `rem` values; media queries cannot read tokens): 72rem (four-up rows go two-up), 64rem (header switches to the Menu button; above it the header is sticky when the window is at least 34rem tall), 62rem (wide rows drop a column; bento goes 6 + 6), 52rem (two-column layouts stack; the opening band reorders to headline, next-event card, photos, and hides the opening buttons), 36rem (phone-only: single-column strips, full-width buttons in action rows).
-- **Phones first:** every row wraps; long words wrap anywhere (`overflow-wrap: break-word`); tap targets are at least 44px (2.75rem).
+Content sits in a centred wrap that is 76rem wide plus a fluid gutter (clamp(1rem, 4vw, 2.5rem)) on each side. Sections are separated by `--section` padding (clamp(5rem, 3rem + 7vw, 9.5rem)). Two neighbouring sections can share a hairline rule across the top of the second section's grid instead of a background change (the supporters and questions sections do this). A section head is capped at 40rem, with a lede under the heading.
+
+Column grids use `minmax(0, …fr)` columns with clamp gaps (clamp(2rem, 6vw, 6rem) is the common one). Breakpoints are written as literal media queries because CSS cannot read custom properties there:
+- **64rem**: the header turns into a menu button, the header stops being sticky, and the 3D scene stops running (the canvas is `display: none` at this width and below).
+- **52rem**: two-column layouts stack.
+- **36rem**: phone-only adjustments.
+
+The header is a floating bar that sticks to the top above 64rem. Its height is 4.25rem, and anchors scroll to `--header-h` + 2rem below it.
+
+### The 3D lane
+The fixed canvas covers the whole viewport at z-index 0 with `pointer-events: none`. `main` and the footer sit above it at z-index 1. Above 64rem the right-hand column of any section that holds a stage is the scene's lane.
+
+**The Clear Lane Rule.** 3D objects never cross text. A stage goes in the right-hand column. Every section between two stages keeps its text in the left column (the programs list is capped at 46rem inside the 76rem wrap for this reason), so the flight path down the right side stays empty. Don't put text, photos or panels in the lane between two stages.
+
+**The Rows-Not-Cards Rule.** Collections (programs, contest-day points, supporters, questions, problem parts) are hairline-ruled rows or columns of text, each with a `--line` rule above or below. White panels are kept for single objects. Never lay out a grid of cards.
 
 ## Elevation & Depth
 
-A light, layered system. Surfaces are white on a white or pale band, and depth comes from three things together: a 1px inset hairline on every card, a soft two-part shadow tinted with ink, and physical overlap of cards across band edges. Only the tinted card is flat and borderless, relying on its fill; the quiet mist card keeps its hairline but drops the shadow.
+The page is flat paper. Depth comes from three things: the white panels' hairline inset plus a soft, ink-tinted haze; the header's frosted blur; and real lighting in the 3D scene. Shadows are always tinted toward the ink (rgb 12 26 31) or, on teal buttons, toward deep teal. They are never neutral grey. Outlines are drawn as `inset 0 0 0 1px` box shadows rather than borders, so they don't change layout.
 
 ### Shadow Vocabulary
-- **Resting** (`--shadow-1`: `0 1px 2px rgb(14 31 29 / 0.06), 0 2px 8px rgb(14 31 29 / 0.06)`): program cards at rest, FAQ items, figure tiles, the open mobile menu. Always paired with `inset 0 0 0 1px var(--line)`.
-- **Raised** (`--shadow-2`: `0 2px 6px rgb(14 31 29 / 0.07), 0 24px 48px -14px rgb(14 31 29 / 0.22)`): featured surfaces: the next-event card and day strip (which overlap a band), the sample problem panel, the about photo, and program cards on hover.
-- **Photo stack** (`0 0 0 6px var(--tint), 0 22px 40px -20px rgb(14 31 29 / 0.45)`): the opening photos; the tint ring makes them read as prints on the band.
-- **Scrolled header** (`0 1px 0 var(--line), 0 12px 28px -20px rgb(14 31 29 / 0.35)` over 94% white with a 10px backdrop blur): applied once the page has moved.
-- **Key edge** (`0 3px 0` in `teal-strong`; `5px` on hover, `1px` on press): primary buttons only. See Components.
+- **Panel haze** (`inset 0 0 0 1px var(--line-soft), 0 1px 2px rgb(12 26 31 / 0.05), 0 4px 16px -6px rgb(12 26 31 / 0.1)`): white panels at rest. The outer part is `--shadow-1`, which is also the hover lift of a program row.
+- **Teal button** (`inset 0 1px 0 rgb(255 255 255 / 0.18), 0 1px 2px rgb(8 90 79 / 0.3), 0 8px 20px -10px rgb(8 90 79 / 0.7)`): the filled button's slight bevel and teal glow.
+- **Quiet button** (`inset 0 0 0 1px var(--line), 0 1px 2px rgb(12 26 31 / 0.05)`): white button outline. On hover it becomes a darker hairline with a small lift (`0 6px 16px -10px rgb(12 26 31 / 0.25)`).
+- **Header bar** (`inset 0 0 0 1px rgb(211 222 223 / 0.9), 0 1px 2px rgb(12 26 31 / 0.04)` plus `backdrop-filter: blur(18px) saturate(160%)`): once the page has scrolled it gains `0 14px 34px -18px rgb(12 26 31 / 0.3)`.
 
 ### Named Rules
-**The Hairline-Plus-Shadow Rule.** A white card always has both its 1px inset hairline and a shadow: Resting by default, Raised for a page's featured panel (one that overlaps a band or holds the main interaction) or on hover. In forced-colours mode the hairline becomes a real 1px border.
-
-**The Key Edge Rule.** The solid `teal-strong` lower edge belongs to the primary button and nothing else. Cards, tiles and images never get a solid offset shadow; the scrolled header's 1px hairline is a divider, not a key edge.
+**The Hairline-and-Haze Rule.** A raised surface is white, outlined by a 1px inset hairline and lifted by a soft ink-tinted haze. Never use a hard offset shadow, a grey shadow or a thick border.
 
 ## Shapes
 
-Soft, rounded and consistent. Three radii plus the pill: 24px (`radius-lg`) for cards, the sample problem, the day strip, the next-event card and the about photo; 16px (`radius`) for smaller containers (figure tiles, FAQ items, the opening photos, the mobile menu); 10px (`radius-sm`) for inputs and the skip link; full pill (999px) for every button, pill, chip, photo caption and the Menu toggle. Rhythm beats use 8px. Overflow is clipped to the radius so photos fill cards edge to edge with no inner padding.
+Corners are gently rounded on a three-step scale: 10px (`--radius-sm`) for buttons, inputs, nav links and the skip link; 14px (`--radius`) for the header bar and program-row hover fills; 22px (`--radius-lg`) for white panels and photos. Round shapes appear only as the program row's 2.5rem circular arrow. Disclosure chevrons are drawn with CSS borders, rotated 45° and flipped when open. Icons are a single 20×20 stroke set (arrow, external, menu, close) at stroke width 1.9 with round caps, sized 1.05em.
 
-Small geometric accents are drawn in CSS, never with glyphs: a 36 × 5px teal pill bar above each day-strip title, and a two-stroke chevron on `<summary>` that flips when opened. Icons come from `Icon.astro`: four line icons (arrow, external, menu, close) on a 20px grid at stroke 1.9 with round caps, sized 1.05em and coloured by `currentColor`.
+The 3D scene has its own geometry: low-poly faceted peaks with flat shading, a softly bevelled four-point star, and a tube for the arc that is thick in the middle and fine at both ends.
 
 ## Components
 
-Site-wide components live in `src/styles/global.css` and work on any page: wrap, section, section head, lede, buttons, arrow link, pills, icons, focus ring. Everything else below (cards, bento, next-event card, date tile, problem, input, day strip, figure tiles, FAQ items, sign-up band) is currently written in the home page's scoped `<style>` in `src/pages/index.astro` and does not exist on other pages yet. To reuse one, move its rules into `global.css` (or a component) with the same values rather than restyling it.
-
 ### Buttons
-Friendly, tactile keys.
-- **Shape:** full pill (999px), minimum height 3rem, padding 0.65rem 1.4rem, Figtree 650, 8px gap before a trailing icon.
-- **Primary:** teal fill, white text, a darker `teal-strong` lower edge (`0 3px 0`).
-- **Hover / Active:** hover lifts 2px and the edge grows to 5px, and a trailing arrow slides 4px right; press drops 2px with a 1px edge in 70ms. Transitions are `dur-fast` (150ms) on `ease-out`. Focus is the global 3px teal outline at 3px offset.
-- **Ghost:** transparent with a 2px inset teal outline and `teal-strong` text; hover fills with wash and darkens the outline. No lower edge. Used beside a primary button for the second choice.
-- **Small:** 2.75rem tall, padding 0.45rem 1.1rem, small text. Used in the header and in compact controls.
-- In a row, one primary leads and ghosts follow. On phones (under 36rem) buttons in action rows go full width.
+Solid, quiet and tactile.
+- **Shape:** gently rounded (10px), minimum height 3rem (2.5rem for small).
+- **Primary:** ARC Teal fill, white text weight 600, padding 0.7rem 1.25rem, teal-tinted glow. Hover turns it Deep Teal and nudges a trailing arrow icon 3px right. Pressing it scales it to 0.98.
+- **Quiet:** white fill with a hairline outline and ink text. Hover darkens the outline, adds a small lift and turns the text Deep Teal. Use it for second actions and social links.
+- **Small:** 2.5rem tall, small text. Used in the header and for in-problem actions such as "Check" and "Try another rhythm".
+- **Focus:** a 2px ARC Teal outline offset 3px (Logo Teal on the night footer).
 
-### Arrow Link
-- A teal text link at 650 with a trailing arrow icon and a 44px target. The underline is transparent at rest and fades in on hover while the arrow slides 5px right. Use for "More about…", "Meet the team".
-- Plain body links are teal with a 1.5px underline offset 0.18em; hover darkens to `teal-strong`.
-
-### Pills
-- **Style:** pill shape, 1.75rem tall, label type (13px, 650). Default is wash with `teal-strong` text for short facts ("In person", "Teams of 3", topics, supporter names). White pill on tinted surfaces; teal pill with white text for a date laid on a photo (pinned 1rem from the card's top-left with a small shadow, `0 2px 8px rgb(14 31 29 / 0.22)`).
-- Pills are facts, not buttons: they are never links and never get hover states.
-
-### Cards / Containers
-- **Corner Style:** 24px.
-- **Background:** white (default), tint (an emphasised card with no shadow), or mist (a quiet card with only its hairline).
-- **Shadow Strategy:** hairline plus Resting; Raised on hover (see Elevation & Depth).
-- **Internal Padding:** 1.25rem to 2rem; body is a column with 12px gaps; pills or the action push to the bottom.
-- **Media:** an optional photo at the top, 13rem to 21rem tall, cropped to cover and flush with the card's edges.
-- **Behaviour:** when a card has a title link, the whole card is the link (the link's `::after` covers the card); a teal arrow follows the title. On pointer devices hover lifts the card 5px, scales its photo to 1.05 over 900ms and nudges the arrow 5px. Keyboard focus outlines the whole card.
-
-### Inputs / Fields
-- **Style:** white field, 2.75rem tall, 1.5px border in `#7d918c`, 10px radius, inherited font with tabular figures; placeholder `#5d6f6a`. Paired with a small primary button.
-- **Focus:** border turns teal and the global teal outline sits 1px out.
-- **Right / Wrong:** right fills the field with wash, turns the border teal and shows "Correct." in `teal-strong`; wrong shakes the field 4px for 280ms and shows the message in `#8a2a12`. The result line is a `role="status"` region.
-- Only one field style exists today (the answer check). The contact page should reuse it.
+### Arrow links
+A text link in ARC Teal, weight 600, with a trailing arrow icon and a 2.75rem tap height. The underline fades in on hover and the arrow slides 4px. Use them for "more" links under sections.
 
 ### Navigation
-- **Header:** pale tint band shared with the opening section, at least 4.5rem tall; the logo (6.5rem wide, tilts -3° on hover) beside the name in Bricolage 650. Above 64rem it is sticky and turns 94% white with a hairline and soft shadow once the page scrolls.
-- **Links:** ink, small text at 550, 44px targets. A 2px teal underline draws in from the left on hover over 240ms and stays on the current page (`aria-current="page"`), with the text in `teal-strong`. A small primary button ("Get updates", or "Register for…" when a form is open) ends the row.
-- **Mobile (64rem and below):** a white pill Menu toggle with a 1.5px hairline. The menu opens as a white 16px-radius panel with a hairline and Resting shadow; links become full-width 3rem rows divided by hairlines and drop in with a 30ms stagger. Escape closes it. Without JavaScript the links show as a wrapping row instead.
-- **Footer:** the one dark surface. `deep` ground, small type, logo (on-dark version) with a short description, three link columns headed in `teal-bright` 650, links in `on-deep` that turn `teal-bright` and underline on hover, and a copyright line above a faint divider.
+A frosted white bar that floats 0.75rem below the top of the window. On the left, the on-light logo (4.75rem) with the full name in ink, weight 620. On the right, nav links in small text (Slate Ink, weight 520, 10px radius) followed by a small primary button: "Register" when registration is open, "Get updates" otherwise. Hover gives links a 5% ink fill. The current page gets an 8% teal fill. At 64rem and below, a "Menu" button opens a stacked list of links ruled by soft hairlines, with the current page in teal. Without JavaScript the links wrap in a row instead.
 
-### Next-Event Card (signature)
-A white 24px card with hairline and Raised shadow, in three columns: a teal date tile (month in uppercase at 750 with 0.1em tracking, the day as a big Bricolage 800 number, then weekday and year), a body with a teal "Next event" line and a countdown chip, the event name in Bricolage 700 and a Where/Who/Cost list, then the actions (primary button, arrow link, a short note). At 62rem the actions move under the body; at 52rem it stacks and the date tile becomes a short horizontal bar across the top. On the home page it hangs over the bottom of the opening band.
+### White panels
+The next-event panel, the sample problem and the closing sign-up. 22px corners, white, padded with clamp(1.25rem, 3.5vw, 2.75rem) or more, using the panel haze. The next-event panel shows the date figure in a column ruled off by a soft hairline, the event name as an ink link whose underline turns teal on hover, label/value facts, and one action. Keep the number of panels on a page small. They mark the single things a visitor came for.
 
-### Photo Treatments
-- **Opening stack:** three event photos in a 10 : 8.4 frame: the lead photo top-right at 74% width, a second rotated -4° bottom-left, a third rotated 3° bottom-right. Each has the 6px tint ring and photo shadow; on pointer hover a photo straightens and scales to 1.04.
-- **Full-bleed photo:** spans the viewport, 18rem to 36rem tall (4 : 3 on phones), with a caption pill (translucent ink, white 13px 600 text) pinned top-left at the gutter. A white strip of content may ride up over its bottom edge.
-- **Leaning photo:** 24px corners, Raised shadow, rotated -1.5°, caption pill bottom-left.
-- Captions name the event and year. Every photo is real and from an ARC event.
+### Ruled rows
+A top hairline, then one row per item with a bottom hairline. Program rows are a three-column grid (11rem date, text, a circular arrow). On hover with a fine pointer the row becomes a white rounded fill with `--shadow-1`, the arrow fills teal and moves 4px. Question rows are `<details>` with an ink summary (lede size, weight 560) and a chevron, and the summary turns teal on hover.
 
-### Sample Problem and Rhythm (signature)
-A white 24px panel (hairline plus Raised) on a mist band, split 5fr / 7fr. The left column holds the statement, fact pills and the rhythm row: seven equal beat cells with 5px gaps, 3rem tall, 8px radius, Bricolage 700 numbers. Short beats are wash with a 1.5px teal inset outline; long beats span two cells in solid teal with white numbers. The row fills left to right one beat at a time (190ms per beat) when it scrolls into view, and "Try another rhythm" (a small ghost button) fades it out and deals a new one. The right column lists the parts, each with an ink point chip (pill, white 650 text, tabular figures) and an answer check, divided by hairlines; a ghost-styled `<summary>` reveals the answers.
+### Inputs / Fields
+- **Style:** Faint Frost fill, 10px corners, 2.5rem tall, ink text with tabular numbers, an inset outline.
+- **Focus:** the outline becomes a 2px ARC Teal inset.
+- **Correct:** Teal Wash fill, 2px teal inset, "Correct." in Deep Teal.
+- **Wrong:** a 280ms shake and a short red message.
 
-### Day Strip and Figure Tiles
-- **Day strip:** a white 24px band of four cells divided by hairlines, each with a 36 × 5px teal bar, a title and soft-ink text. Two-up at 72rem, one column at 36rem.
-- **Figure tiles:** white 16px tiles with hairline plus Resting, a big teal figure over a soft-ink label. Two-up at 72rem; at 36rem each becomes a single row with the figure beside the label.
+### Footer
+The night band. On-dark logo (9.5rem) and a one-sentence description in Dim Frost. Three link columns, each headed by a small label in Logo Teal. Links are Moonlit Frost, turn Logo Teal on hover, and have 0.625rem vertical padding for tap size. A bottom line with the copyright sits above a faint hairline.
 
-### FAQ Items
-White 16px `<details>` with hairline plus Resting, stacked with 12px gaps. The question is Bricolage 650 at lede size in a row at least 3.75rem tall, with the chevron on the right; hover turns it `teal-strong`. The answer opens with a short rise and sits in soft ink, max 44em.
+### The 3D Scene (signature)
+One scene for the whole site, in `src/scene/arc-scene.js`, drawn on one fixed `.scene-canvas` from the base layout. It uses an orthographic camera and a transparent background so the frost ground shows through. Objects: seven faceted peaks (five form the range in the hero; all seven can become rhythm notes), the star with its radial halo, the arc, five sparkles and a thin teal baseline. Materials: snow #f7fbfb with shade #e4eeee, left-facing faces teal #33a994 (deepest #268a79), so that lit they read as the logo's #52d5bf. The star and arc are #45c6af with a slight Logo Teal glow, the sparkles #7fe3d1. The light comes from the upper left, with a cool rim light behind on the right. Soft real shadows and a faint shade pool sit under the range.
 
-### Motion Grammar
-Motion lives in `src/styles/motion.css` and `src/scripts/motion.js`; values are in the sidecar. To use it on a new page:
-- Below the fold, put `data-reveal` on a heading, lede, card or row to have it rise 20px (12px on phones) and fade in as it scrolls into view, staggered 70ms (50ms on phones). Use `data-reveal="photo"` on a figure to fade it while the photo inside settles from 1.06 scale.
-- In the first viewport, add `.intro` with an inline `--d` delay (240ms to 480ms) for the opening sequence; split the `h1` into `.word` spans with `--i` for the word-by-word rise. That word rise carries the site's only content blur (8px).
-- Never set an element's resting style to hidden. If the script fails, or reduced motion is on, or the page is printed, everything shows.
+The hero opening runs over about 3 seconds: peaks rise one at a time from the middle, then the star appears, then the arc draws itself outward from the star, then the sparkles. At rest the star bobs gently, the sparkles twinkle, and the whole rig sways slightly and tilts toward the pointer.
+
+**Adding a stage to a page.**
+1. Mark the section that holds the stage with `data-stage-section`. Its box decides when the scene arrives and leaves.
+2. Inside it, put an `aria-hidden="true"` element with `data-stage="<id>"` and an explicit height. The scene centres on that element and scales the arrangement to fit its box.
+3. `<id>` must match a layout function in the `layouts` map of `arc-scene.js`. Today only `hero` and `rhythm` exist, and unknown ids are silently ignored. A new arrangement needs a new layout function that places the same objects (peaks, star, arc, sparkles, baseline), so moving between stages stays a rearrangement of one logo.
+4. Choose the kind. The default (`flow`) holds the arrangement until the page has scrolled 5% of a viewport past the section's top, then flies to the next stage. `data-stage-kind="pinned"` holds it while the section scrolls by (section height minus one viewport). A pinned stage element must be `position: sticky` in a side column (the rhythm stage uses `top: 18vh; height: 52vh`).
+5. Stages are visited in document order. Between two stages the objects fly in a straight line from one stage's centre to the next, leaving a beat apart like a flock and lifting gently mid-flight. The flight is kept below the header and above 72% of the viewport height. Follow the Clear Lane Rule so that line never crosses text.
+6. Gate the layout. The head script adds `.scene-capable` to `<html>` only when the screen is wider than 64rem (min-width 64.0625rem), WebGL2 is available and Save-Data is off. Style `html:not(.scene-capable)` so a stage column collapses and the text takes the full width (as the problem section does). Below 64rem the canvas is hidden anyway.
+7. Give a hero stage a still. The hero stage holds `<img class="stage-still" src="/scene-hero.png" width="1200" height="900" alt="">` with `object-fit: contain`. It shows on phones, without WebGL and while the scene loads. When the first frame is drawn, `html` gets `.scene-on`, the canvas fades in over 600ms and the still fades out. Re-render `public/scene-hero.png` from the scene whenever the scene's look changes. Pinned side stages need no still because their column collapses.
+
+The scene loads after the page's `load` event, so it never delays content. With reduced motion on, it shows the arrangements still, with no opening, bobbing or pointer tilt, and flights snap at the halfway point.
+
+### Motion
+Motion only adds a starting state, so every element's resting style is fully visible. A page with no JavaScript, an old browser or reduced motion is complete and still.
+- **Signature:** the 3D scene, as above.
+- **Headline blur-in:** each word of the h1 rises 0.32em out of an 8px blur over 900ms on the no-bounce settle curve `cubic-bezier(0.3, 0.55, 0.05, 1)`, with words 42ms apart. The rest of the first screen (lede, actions, next-event panel) then rises 18px (10px below 52rem) with set delays (300ms to 520ms).
+- **One heading reveal:** a single `data-reveal` heading per page rises in once as it reaches the screen. On the home page it is "Try a real contest problem", the heading next to the scene's second stage.
+- **Feedback:** small responses to what the visitor does are allowed. Button press and arrow nudge, the program row lift, the header shadow after scrolling, details opening (480ms rise), the mobile menu dropping in, the wrong-answer shake, the rhythm beats swapping and lighting as the 3D notes play, and a 150/220ms crossfade between pages using view transitions.
+- **Smooth scrolling:** Lenis on the mouse wheel (lerp 0.13), with in-page links gliding over 1.1s. Touch scrolling stays native, the skip link is left alone, and Lenis is off with reduced motion.
+- **Timing:** state changes use `--dur-fast` (160ms) or `--dur` (300ms) on `cubic-bezier(0.25, 1, 0.5, 1)`. Entrances use 900ms on the settle curve.
+
+**The One Signature Rule.** A page gets one signature motion (the 3D scene), the headline blur-in and at most one heading reveal. Paragraphs, photos, rows, panels and section after section never fade or rise in on scroll.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** take every colour, size, space, radius, shadow and easing from `src/styles/tokens.css`; if a new value is truly needed, add it there with a comment first.
-- **Do** keep content bands white, mist or tint, and alternate them so neighbouring sections differ.
-- **Do** open each section with an `h2` and a lede, and give each page exactly one `h1`.
-- **Do** give every white card its 1px inset hairline and a shadow: Resting at rest, Raised for the page's featured panel or on hover.
-- **Do** use one primary teal button per action row, with ghost buttons for the alternatives.
-- **Do** use real ARC event photos with true captions; rotate photos only a few degrees (1.5° to 4°), as in the opening stack and the about photo.
-- **Do** use `data-reveal` and `.intro` for motion, and check the page with JavaScript off and with reduced motion on.
-- **Do** keep tap targets at least 2.75rem (44px) and check new text colours reach WCAG AA on their actual surface.
-- **Do** use `Icon.astro` for icons and add new ones on the same 20px grid at stroke 1.9.
+- **Do** let `--ground` (#eef3f3) show behind every section. Separate sections with `--section` spacing or a `--line` hairline.
+- **Do** use `--teal` (#0b7566) for every action and link on light surfaces, with `--teal-deep` (#085a4f) on hover.
+- **Do** set every heading in Mona Sans, wider and tighter as it grows: 640/108% for h1, 620/106% for h2, 600/104% for h3.
+- **Do** present collections as hairline-ruled rows, and save white 22px panels with the panel haze for single objects such as the next event.
+- **Do** put any 3D stage in the right-hand lane, keep text out of that lane between stages, and collapse the stage column under `html:not(.scene-capable)`.
+- **Do** check every page with JavaScript off, with reduced motion on, and below 64rem, where it must be complete without the scene.
+- **Do** re-render `public/scene-hero.png` whenever the scene's look changes.
+- **Do** keep tap targets at least 2.5rem (buttons 3rem, arrow links 2.75rem).
 
 ### Don't:
-- **Don't** add dark or saturated colour bands to page content; the footer is the only dark surface.
-- **Don't** introduce amber or any second accent colour, and don't use teal-bright for text, fills or buttons on light surfaces.
-- **Don't** frame a page around a themed concept or storytelling metaphor (the rejected trail-guide version is the example); say plainly what the page is.
-- **Don't** put a small label, tag or category line above a section heading.
-- **Don't** give anything other than a primary button a solid `teal-strong` lower edge or a hard offset shadow.
-- **Don't** make a figure tile, pill or badge out of a number that is not true and current.
-- **Don't** hide content until a script reveals it, or set any element's resting state to invisible.
-- **Don't** use emoji or text glyphs as icons.
-- **Don't** hard-code new hex values in a page's styles; add them to `tokens.css`.
+- **Don't** give a section its own background colour, gradient or full-bleed band. The only dark band is the night footer.
+- **Don't** add a second accent colour (no amber, no saturated colour), and don't put text on `--teal-logo` (#52d5bf) on a light surface.
+- **Don't** build themed concepts (trail guides, maps, mascots) or decoration that needs explaining.
+- **Don't** use card grids, badge rows or stat tiles.
+- **Don't** add per-section scroll reveals or animate every section. One signature, one headline blur-in, one heading reveal.
+- **Don't** let a 3D object cross text, and don't start a second canvas or a second 3D scene. Add a stage to the one scene instead.
+- **Don't** use grey or hard offset shadows. Shadows are soft and tinted toward the ink.
+- **Don't** add a second typeface.

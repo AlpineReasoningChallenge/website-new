@@ -25,9 +25,11 @@ npm run preview   # serves dist/ exactly as it will be deployed
 | `src/layouts/Base.astro` | The page shell: `<head>`, link-preview tags, header, footer, scripts. |
 | `src/components/` | Header, Footer and the small icon set. |
 | `src/styles/tokens.css` | Every colour, font size, space, radius, shadow and easing. Change values here, not in pages. |
-| `src/styles/global.css` | Base styles, buttons, arrow links and pills. |
+| `src/styles/global.css` | Base styles, buttons and arrow links. |
 | `src/styles/motion.css` | All animation, in one place. |
-| `src/scripts/motion.js` | Scroll reveals, the header shadow, the "days to go" count, the answer checker and the rhythm animation. |
+| `src/scripts/motion.js` | Smooth wheel scrolling, the header shadow, the "days to go" count, the answer checker, the rhythm button, and loading the 3D scene. |
+| `src/scene/arc-scene.js` | The 3D scene: ARC's logo (peaks, star, arc) beside the headline, flying down to become the sample problem's rhythm. Runs only on screens wider than 1024px with WebGL2. |
+| `public/scene-hero.png` | A still render of the 3D logo, shown on phones and before the scene loads. Re-render it if the scene's look changes: add a temporary page that calls `runScene(canvas, { reduced: true })` on a full-window `data-stage="hero"` element, screenshot it at 1200×900 with a transparent background, and delete the page. |
 | `src/assets/photos/` | Event photos. Astro resizes and compresses them at build time. |
 | `public/` | Files served as-is: logos, favicons, the link-preview image, `robots.txt`. |
 | `DESIGN.md` | The design system: colours, type, components, motion and the rules for new pages. Read it before building a page. |
@@ -62,7 +64,7 @@ After any change, run `npm run build` and check the home page on a phone width: 
 ## Rules for this site
 
 - Only state what is true today. No made-up numbers, quotes or sponsor logos; write "to be announced" when something is not decided.
-- White pages, near-black text, teal as the only accent. No dark or brightly coloured bands. See `DESIGN.md`.
+- One frost-white page colour, ink from the logo's night sky, the logo's teal as the only accent. No section background colours (the 3D canvas sits behind the page). See `DESIGN.md`.
 - Everything must still show with JavaScript turned off and with "reduce motion" turned on. Motion only adds a starting state; it never hides content by default.
 - Keep `/rmjsc/` and `/sst/` working: they are printed on past posters and linked from other sites.
 
