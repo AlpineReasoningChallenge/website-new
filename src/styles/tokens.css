@@ -1,40 +1,39 @@
 /* Design tokens: every colour, size, space and motion value on the site comes from here.
-   Breakpoints used across the site (media queries cannot read custom properties):
-   72rem  four-column rows drop to two
-   64rem  header switches to the menu button
-   62rem  wide rows drop a column
+   The palette comes from ARC's logo: its teal, and the night sky behind it as the ink.
+   Breakpoints (media queries cannot read custom properties):
+   64rem  header switches to the menu button; the 3D scene only runs above this
    52rem  two-column layouts stack
    36rem  phone-only adjustments */
 
 :root {
   color-scheme: light;
 
-  /* Colour: white pages, near-black text, teal as the only accent. */
-  --white: #ffffff;
-  --ink: #0e1f1d; /* main text */
-  --ink-soft: #465753; /* secondary text */
-  --line: #d9e3e1; /* hairlines */
-  --mist: #f3f7f6; /* pale grey-teal bands */
-  --tint: #e9f6f2; /* the opening and sign-up bands */
-  --wash: #d8f0e9; /* pills and small fills */
-  --teal: #0b7566; /* buttons, links, dates */
-  --teal-strong: #095b50; /* hover, and teal text on tints */
-  --teal-bright: #52d5bf; /* the logo teal: footer only */
-  --deep: #0b2622; /* footer */
-  --on-deep: #e6f2ef;
-  --on-deep-soft: #bfd9d3;
+  /* Colour */
+  --ground: #eef3f3; /* the one page colour: cool frost */
+  --surface: #ffffff; /* panels that hold content */
+  --surface-soft: #f6f9f9; /* hover fills */
+  --line: #d3dedf;
+  --line-soft: #e2e9ea;
+  --ink: #0c1a1f; /* night spruce, from the sky behind the logo */
+  --ink-2: #42535a; /* secondary text */
+  --ink-3: #5b6b71; /* captions and labels */
+  --teal: #0b7566; /* buttons, links, the date */
+  --teal-deep: #085a4f; /* hover */
+  --teal-logo: #52d5bf; /* the logo's own teal: on night only, and in the 3D scene */
+  --teal-wash: #d9f1eb;
+  --night: #0b1a1f; /* footer */
+  --on-night: #e4efee;
+  --on-night-2: #a9bfbd;
 
   /* Type */
-  --font-display: 'Bricolage Grotesque Variable', 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
-  --font: 'Figtree Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font: 'Mona Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
-  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
-  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-h2: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
-  --text-h1: clamp(2.375rem, 1.2rem + 4.6vw, 4.25rem);
-  --text-figure: clamp(2.75rem, 2rem + 3vw, 4rem);
+  --text-lg: clamp(1.125rem, 1.06rem + 0.3vw, 1.25rem);
+  --text-h3: clamp(1.25rem, 1.15rem + 0.45vw, 1.45rem);
+  --text-h2: clamp(2rem, 1.3rem + 2.4vw, 3.125rem);
+  --text-h1: clamp(2.5rem, 1.4rem + 3.9vw, 4.375rem);
 
   /* Space */
   --space-1: 0.25rem;
@@ -44,24 +43,24 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
-  --space-8: 4rem;
-  --section: clamp(4rem, 2.5rem + 6vw, 8rem);
+  --space-8: 4.5rem;
+  --section: clamp(5rem, 3rem + 7vw, 9.5rem);
 
-  /* Shape and depth */
-  --radius-lg: 24px;
-  --radius: 16px;
+  /* Shape and depth (shadows are tinted toward the ink, never neutral grey) */
+  --radius-lg: 22px;
+  --radius: 14px;
   --radius-sm: 10px;
-  --shadow-1: 0 1px 2px rgb(14 31 29 / 0.06), 0 2px 8px rgb(14 31 29 / 0.06);
-  --shadow-2: 0 2px 6px rgb(14 31 29 / 0.07), 0 24px 48px -14px rgb(14 31 29 / 0.22);
+  --shadow-1: 0 1px 2px rgb(12 26 31 / 0.05), 0 4px 16px -6px rgb(12 26 31 / 0.1);
+  --shadow-2: 0 1px 2px rgb(12 26 31 / 0.05), 0 22px 48px -18px rgb(12 26 31 / 0.22);
 
   /* Layout */
-  --wrap: 74rem;
-  --gutter: clamp(1rem, 4vw, 2rem);
-  --header-h: 4.5rem;
+  --wrap: 76rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --header-h: 4.25rem;
 
   /* Motion */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-fast: 150ms;
-  --dur: 280ms;
+  --dur-fast: 160ms;
+  --dur: 300ms;
 }

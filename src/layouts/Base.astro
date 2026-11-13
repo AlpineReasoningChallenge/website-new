@@ -4,8 +4,7 @@ import '../styles/motion.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
-import figtree from '@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2?url';
-import bricolage from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import mona from '@fontsource-variable/mona-sans/files/mona-sans-latin-wdth-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -47,6 +46,15 @@ const organization = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline>
       document.documentElement.classList.add('js');
+      (() => {
+        try {
+          const wide = matchMedia('(min-width: 64.0625rem)').matches;
+          const save = navigator.connection && navigator.connection.saveData;
+          if (wide && !save && document.createElement('canvas').getContext('webgl2')) {
+            document.documentElement.classList.add('scene-capable');
+          }
+        } catch {}
+      })();
     </script>
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -54,9 +62,8 @@ const organization = {
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" href={bricolage} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={figtree} as="font" type="font/woff2" crossorigin />
-    <meta name="theme-color" content="#e9f6f2" />
+    <link rel="preload" href={mona} as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content="#eef3f3" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:site_name" content={site.name} />
@@ -72,6 +79,7 @@ const organization = {
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <canvas class="scene-canvas" aria-hidden="true"></canvas>
     <Header />
     <main id="main">
       <slot />

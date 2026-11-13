@@ -1,18 +1,38 @@
-// ARC motion and small interactions. No libraries.
+// ARC motion and small interactions.
 // The code that hides an element is the same code that shows it again, and it only hides
-// elements that are below the fold when it runs. If this file fails, nothing stays hidden.
+// elements below the fold when it runs. If this file fails, nothing stays hidden.
+import Lenis from 'lenis';
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasIO = 'IntersectionObserver' in window;
 const narrow = matchMedia('(max-width: 52rem)').matches;
-const FOLD = narrow ? 1 : 0.92;
-const STAGGER = narrow ? 50 : 70; // ms between items revealed together
-const MAX_STEPS = narrow ? 3 : 5;
 
-const below = (el) => el.getBoundingClientRect().top > innerHeight * FOLD;
+// Smooth wheel scrolling. Touch scrolling stays native. In-page links glide to their target;
+// the skip link is left alone so it still moves keyboard focus.
+let lenis = null;
+function smoothScroll() {
+  if (reduce) return;
+  lenis = new Lenis({ lerp: 0.13, smoothWheel: true });
+  const raf = (time) => {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  };
+  requestAnimationFrame(raf);
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || link.classList.contains('skip-link') || link.hash.length < 2) return;
+    const target = document.getElementById(link.hash.slice(1));
+    if (!target) return;
+    event.preventDefault();
+    lenis.scrollTo(target, { duration: 1.1 });
+    history.pushState(null, '', link.hash);
+  });
+}
 
+// Section headings rise in once, as they reach the screen.
 function reveals() {
   if (!hasIO || reduce) return;
+  const below = (el) => el.getBoundingClientRect().top > innerHeight * (narrow ? 1 : 0.92);
   const io = new IntersectionObserver(
     (entries) => {
       let step = 0;
@@ -20,27 +40,26 @@ function reveals() {
         if (!entry.isIntersecting) continue;
         const el = entry.target;
         io.unobserve(el);
-        const delay = Math.min(step++, MAX_STEPS) * STAGGER;
+        const delay = Math.min(step++, 3) * 70;
         el.style.setProperty('--reveal-delay', `${delay}ms`);
         el.classList.add('reveal-in');
         el.classList.remove('reveal-pending');
-        // Hand the element back to its own hover transitions once it has settled.
         setTimeout(() => {
           el.classList.remove('reveal-in');
           el.style.removeProperty('--reveal-delay');
         }, delay + 1500);
       }
     },
-    { rootMargin: narrow ? '0px' : '0px 0px -8% 0px', threshold: 0 },
+    { rootMargin: narrow ? '0px' : '0px 0px -8% 0px' },
   );
   for (const el of document.querySelectorAll('[data-reveal]')) {
-    if (!below(el)) continue; // already on screen: leave it alone
+    if (!below(el)) continue;
     el.classList.add('reveal-pending');
     io.observe(el);
   }
 }
 
-// Header gains a shadow once the page has moved, without a scroll listener.
+// The header gains a shadow once the page has moved.
 function headerState() {
   const header = document.querySelector('.site-header');
   if (!header || !hasIO) return;
@@ -48,9 +67,7 @@ function headerState() {
   sentinel.setAttribute('aria-hidden', 'true');
   sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none';
   document.body.prepend(sentinel);
-  new IntersectionObserver(([entry]) => header.toggleAttribute('data-scrolled', !entry.isIntersecting)).observe(
-    sentinel,
-  );
+  new IntersectionObserver(([entry]) => header.toggleAttribute('data-scrolled', !entry.isIntersecting)).observe(sentinel);
 }
 
 // "74 days to go" beside the next event. Left empty once the day has passed.
@@ -78,7 +95,7 @@ function answerChecks() {
       if (!value) return;
       const right = Number(value) === Number(form.dataset.answer);
       form.classList.remove('is-right', 'is-wrong');
-      void form.offsetWidth; // lets the shake replay on a second wrong answer
+      void form.offsetWidth;
       form.classList.add(right ? 'is-right' : 'is-wrong');
       result.textContent = right ? 'Correct.' : 'Not yet. Try again.';
     });
@@ -89,14 +106,13 @@ function answerChecks() {
   }
 }
 
-// Signature: the rhythm fills beat by beat, and "Try another rhythm" deals a new one.
+// "Try another rhythm": deals a new 7-beat rhythm to the figure and to the 3D notes.
 function rhythm() {
   const fig = document.querySelector('[data-rhythm]');
   const beats = fig && fig.querySelector('.beats');
   const caption = fig && fig.querySelector('.rhythm-caption');
   const next = fig && fig.querySelector('.rhythm-next');
   if (!beats || !caption || !next) return;
-
   const TOTAL = 7;
   const ways = [1, 1];
   for (let n = 2; n <= TOTAL; n++) ways[n] = ways[n - 1] + ways[n - 2];
@@ -111,87 +127,60 @@ function rhythm() {
     }
     return out;
   };
-  const read = () => [...beats.children].map((s) => (s.classList.contains('long') ? 2 : 1));
-  let current = read();
-  let playing = 0;
-  const beatMs = parseFloat(getComputedStyle(beats).getPropertyValue('--beat')) || 190;
-  let firstPlay = null;
-
-  const stamp = () => {
-    let at = 0;
-    for (const s of beats.children) {
-      const len = s.classList.contains('long') ? 2 : 1;
-      s.style.setProperty('--at', at);
-      s.style.setProperty('--len', len);
-      at += len;
-    }
-  };
-  const play = () => {
-    if (reduce) return;
-    stamp();
-    beats.classList.remove('is-waiting', 'is-playing');
-    void beats.offsetWidth; // restart the animation
-    beats.classList.add('is-playing');
-    clearTimeout(playing);
-    playing = setTimeout(() => beats.classList.remove('is-playing'), TOTAL * beatMs + 300);
-  };
+  let current = [...beats.children].map((s) => (s.classList.contains('long') ? 2 : 1));
   const render = (pattern) => {
-    const names = pattern.map((l) => (l === 2 ? 'long' : 'short')).join(', ');
     beats.replaceChildren(
-      ...pattern.map((l) => {
+      ...pattern.map((len, n) => {
         const s = document.createElement('span');
-        s.className = l === 2 ? 'long' : 'short';
-        s.textContent = String(l);
+        s.className = len === 2 ? 'long' : 'short';
+        s.textContent = String(len);
+        s.style.setProperty('--n', n);
         return s;
       }),
     );
-    caption.textContent = `Another way to fill ${TOTAL} beats: ${names}.`;
+    caption.textContent = `Another way to fill ${TOTAL} beats: ${pattern.map((l) => (l === 2 ? 'long' : 'short')).join(', ')}.`;
     current = pattern;
-    play();
+    window.dispatchEvent(new CustomEvent('arc:rhythm', { detail: pattern }));
+    if (!reduce) {
+      beats.classList.add('is-arriving');
+      setTimeout(() => beats.classList.remove('is-arriving'), 800);
+    }
   };
-
+  // Light the figure's note while the 3D row plays it.
+  window.addEventListener('arc:beat', (event) => {
+    [...beats.children].forEach((span, i) => span.classList.toggle('is-playing', i === event.detail));
+  });
   next.hidden = false;
   next.addEventListener('click', () => {
-    if (firstPlay) firstPlay();
     let pattern;
     do pattern = randomRhythm();
     while (pattern.join() === current.join());
     if (reduce) return render(pattern);
-    beats.classList.remove('is-playing');
     beats.classList.add('is-leaving');
     setTimeout(() => {
       beats.classList.remove('is-leaving');
       render(pattern);
     }, 140);
   });
-
-  // First play: once the row reaches the upper three quarters of the screen, or 800ms after
-  // it first shows at all, whichever comes first. The row is never left empty on screen.
-  if (hasIO && !reduce && below(fig)) {
-    beats.classList.add('is-waiting');
-    let timer = 0;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        if (entry.boundingClientRect.top < innerHeight * 0.75) start(350);
-        else if (!timer) timer = setTimeout(() => start(0), 800);
-      },
-      { threshold: [0, 0.5, 1] },
-    );
-    const start = (wait) => {
-      firstPlay();
-      setTimeout(play, wait);
-    };
-    firstPlay = () => {
-      io.disconnect();
-      clearTimeout(timer);
-      firstPlay = null;
-    };
-    io.observe(fig);
-  }
 }
 
-for (const run of [reveals, headerState, countdown, answerChecks, rhythm]) {
+// The 3D scene: wide screens with WebGL only, loaded after the page is ready.
+function scene() {
+  const canvas = document.querySelector('.scene-canvas');
+  if (!canvas) return;
+  // The head script runs the same test (wide screen, WebGL2, no data saver) before paint.
+  if (!document.documentElement.classList.contains('scene-capable')) return;
+  const start = () =>
+    import('../scene/arc-scene.js')
+      .then(({ runScene }) =>
+        runScene(canvas, { reduced: reduce, onReady: () => document.documentElement.classList.add('scene-on') }),
+      )
+      .catch(() => {});
+  if (document.readyState === 'complete') setTimeout(start, 50);
+  else window.addEventListener('load', () => setTimeout(start, 50), { once: true });
+}
+
+for (const run of [smoothScroll, reveals, headerState, countdown, answerChecks, rhythm, scene]) {
   try {
     run();
   } catch {

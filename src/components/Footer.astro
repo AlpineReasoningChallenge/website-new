@@ -4,10 +4,10 @@ import { site } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer on-dark">
+<footer class="site-footer on-night">
   <div class="wrap top">
     <div class="about">
-      <img src="/logo-on-dark.svg" alt="" width="160" height="89" loading="lazy" />
+      <img src="/logo-on-dark.svg" alt="" width="150" height="84" loading="lazy" />
       <p>
         {site.name} is a nonprofit run by students in Calgary, Alberta. We make free STEM contests and
         classes for young people.
@@ -54,8 +54,10 @@ const year = new Date().getFullYear();
 
 <style>
   .site-footer {
-    background: var(--deep);
-    color: var(--on-deep);
+    position: relative;
+    z-index: 1;
+    background: var(--night);
+    color: var(--on-night);
     font-size: var(--text-sm);
   }
 
@@ -67,14 +69,14 @@ const year = new Date().getFullYear();
   }
 
   .about img {
-    width: 10rem;
+    width: 9.5rem;
     height: auto;
     margin-bottom: var(--space-5);
   }
 
   .about p {
     max-width: 30em;
-    color: var(--on-deep-soft);
+    color: var(--on-night-2);
   }
 
   .columns {
@@ -86,31 +88,30 @@ const year = new Date().getFullYear();
   h2 {
     margin-bottom: var(--space-2);
     font-size: var(--text-sm);
-    font-weight: 650;
+    font-weight: 600;
+    font-stretch: 100%;
     letter-spacing: 0;
     line-height: 1.4;
-    color: var(--teal-bright);
+    color: var(--teal-logo);
   }
 
-  /* Each link is a 44px target. */
   a {
     display: inline-block;
     padding-block: 0.625rem;
     line-height: 1.5;
-    color: var(--on-deep);
+    color: var(--on-night);
     text-decoration: none;
     transition: color var(--dur-fast) var(--ease-out);
   }
 
   a:hover {
-    color: var(--teal-bright);
-    text-decoration: underline;
+    color: var(--teal-logo);
   }
 
   .bottom {
     padding-block: var(--space-5);
-    border-top: 1px solid rgb(191 217 211 / 0.18);
-    color: var(--on-deep-soft);
+    border-top: 1px solid rgb(169 191 189 / 0.18);
+    color: var(--on-night-2);
   }
 
   @media (max-width: 52rem) {

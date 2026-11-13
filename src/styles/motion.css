@@ -1,29 +1,23 @@
-/* ARC motion system. Imported after global.css.
-   One rule for this file: the resting state of every element is its normal, fully visible style.
-   Motion only ever adds a "from" state (keyframes with a backwards fill, or a class the script
-   adds and removes). No JavaScript, reduced motion or an old browser means a static page. */
+/* ARC motion. Imported after global.css.
+   The resting state of every element is its normal, fully visible style. Motion only adds a
+   starting state (keyframes with a backwards fill, or a class the script adds and removes).
+   No JavaScript, reduced motion or an old browser means a complete static page.
+   The 3D scene (src/scene/arc-scene.js) is the one moving thing; everything else stays quiet. */
 
 :root {
-  --ease-settle: cubic-bezier(0.3, 0.55, 0.05, 1); /* entrances: a spring with no bounce */
-  --dur-press: 70ms;
-  --dur-enter: 800ms; /* reads as about 450ms with --ease-settle */
-  --dur-photo: 1400ms;
-  --beat: 190ms; /* one beat of the sample problem's rhythm */
-  --rise: 20px;
-  --rise-word: 0.3em;
-  --blur-word: 8px; /* the only blur on the site; set to 0px to remove it */
-  --photo-from: 1.06;
-  --stagger-word: 45ms;
+  --ease-settle: cubic-bezier(0.3, 0.55, 0.05, 1); /* a spring with no bounce */
+  --dur-enter: 900ms;
+  --rise: 18px;
+  --rise-word: 0.32em;
+  --blur-word: 8px;
+  --stagger-word: 42ms;
 }
 
 @media (max-width: 52rem) {
   :root {
-    --rise: 12px;
-    --dur-reveal: 600ms;
+    --rise: 10px;
   }
 }
-
-/* Keyframes hold only the starting state; the end state is the element's own style. */
 
 @keyframes arc-rise-blur {
   from {
@@ -48,31 +42,8 @@
   }
 }
 
-@keyframes arc-settle {
+@keyframes arc-fade {
   from {
-    scale: var(--photo-from);
-  }
-}
-
-@keyframes arc-pop {
-  from {
-    opacity: 0;
-    scale: 0.86;
-    translate: 0 var(--rise);
-  }
-}
-
-@keyframes arc-fill {
-  from {
-    clip-path: inset(0 100% 0 0 round 8px);
-  }
-  to {
-    clip-path: inset(0 0 0 0 round 8px);
-  }
-}
-
-@keyframes arc-fade-out {
-  to {
     opacity: 0;
   }
 }
@@ -93,7 +64,13 @@
   }
 }
 
-/* 1. Opening sequence: first viewport, CSS only, plays once on load. */
+@keyframes arc-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* 1. Opening: the headline arrives word by word, then the rest of the first screen. */
 
 .intro-title .word {
   display: inline-block;
@@ -102,7 +79,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .intro-title .word {
     animation: arc-rise-blur var(--dur-enter) var(--ease-settle) backwards;
-    animation-delay: calc(20ms + var(--i, 0) * var(--stagger-word));
+    animation-delay: calc(40ms + var(--i, 0) * var(--stagger-word));
   }
 
   .intro {
@@ -113,69 +90,31 @@
   .lede.intro {
     animation-name: arc-rise-soft;
   }
-
-  /* The lead photo only scales (it may be the largest paint); the other two pop in after it. */
-  .collage .c-main img {
-    animation: arc-settle var(--dur-photo) var(--ease-glide) 120ms backwards;
-  }
-
-  .collage .c-two,
-  .collage .c-three {
-    animation: arc-pop 700ms var(--ease-glide) backwards;
-  }
-
-  .collage .c-two {
-    animation-delay: 420ms;
-  }
-
-  .collage .c-three {
-    animation-delay: 560ms;
-  }
 }
 
-/* 2. Scroll reveals. The script adds .reveal-pending only to elements below the fold. */
+/* 2. Section headings rise in once as they reach the screen (the script adds the classes). */
 
 .reveal-pending {
   opacity: 0;
   translate: 0 var(--rise);
 }
 
-.reveal-pending[data-reveal='photo'] {
-  translate: none;
-}
-
-.reveal-pending[data-reveal='photo'] img {
-  scale: var(--photo-from);
-}
-
 .reveal-in {
   transition:
-    opacity var(--dur-reveal, var(--dur-enter)) var(--ease-settle) var(--reveal-delay, 0ms),
-    translate var(--dur-reveal, var(--dur-enter)) var(--ease-settle) var(--reveal-delay, 0ms);
+    opacity var(--dur-enter) var(--ease-settle) var(--reveal-delay, 0ms),
+    translate var(--dur-enter) var(--ease-settle) var(--reveal-delay, 0ms);
 }
 
-.reveal-in[data-reveal='photo'] {
-  transition: opacity 600ms var(--ease-out) var(--reveal-delay, 0ms);
-}
-
-.reveal-in[data-reveal='photo'] img {
-  transition: scale var(--dur-photo) var(--ease-glide) var(--reveal-delay, 0ms);
-}
-
-/* 3. Signature: the sample problem's rhythm fills beat by beat. */
+/* 3. Small feedback. */
 
 @media (prefers-reduced-motion: no-preference) {
-  .beats.is-waiting > span {
-    clip-path: inset(0 100% 0 0 round 8px);
-  }
-
-  .beats.is-playing > span {
-    animation: arc-fill calc(var(--len, 1) * var(--beat)) linear backwards;
-    animation-delay: calc(var(--at, 0) * var(--beat));
-  }
-
   .beats.is-leaving > span {
     animation: arc-fade-out 140ms var(--ease-out) forwards;
+  }
+
+  .beats.is-arriving > span {
+    animation: arc-rise 420ms var(--ease-settle) backwards;
+    animation-delay: calc(var(--n, 0) * 40ms);
   }
 
   .check.is-wrong input {
@@ -183,40 +122,42 @@
   }
 
   details[open] > .details-body {
-    animation: arc-rise 500ms var(--ease-settle) backwards;
+    animation: arc-rise 480ms var(--ease-settle) backwards;
   }
-}
 
-/* 4. Header and menu. */
-
-@media (prefers-reduced-motion: no-preference) {
-  .site-header[data-open] .site-nav,
-  .site-header[data-open] .site-nav li {
+  .site-header[data-open] .site-nav {
     animation: arc-drop var(--dur) var(--ease-settle) backwards;
   }
+}
 
-  .site-header[data-open] .site-nav li:nth-child(2) {
-    animation-delay: 30ms;
-  }
+/* 4. The 3D scene: its canvas fades in over the still image once the first frame is drawn. */
 
-  .site-header[data-open] .site-nav li:nth-child(3) {
-    animation-delay: 60ms;
-  }
+.scene-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
 
-  .site-header[data-open] .site-nav li:nth-child(4) {
-    animation-delay: 90ms;
-  }
+.scene-on .scene-canvas {
+  opacity: 1;
+}
 
-  .site-header[data-open] .site-nav li:nth-child(5) {
-    animation-delay: 120ms;
-  }
+.scene-on .stage-still {
+  opacity: 0;
+}
 
-  .site-header[data-open] .site-nav li:nth-child(6) {
-    animation-delay: 150ms;
+@media (max-width: 64rem) {
+  .scene-canvas {
+    display: none;
   }
 }
 
-/* 5. Page to page: a plain crossfade where the browser supports it, with no script. */
+/* 5. Page to page: a plain crossfade where the browser supports it. */
 
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
@@ -245,14 +186,12 @@
 }
 
 @media print {
-  .reveal-pending,
-  .reveal-pending img {
+  .reveal-pending {
     opacity: 1 !important;
     translate: none !important;
-    scale: none !important;
   }
 
-  .beats > span {
-    clip-path: none !important;
+  .scene-canvas {
+    display: none;
   }
 }

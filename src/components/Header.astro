@@ -11,32 +11,34 @@ const cta =
 ---
 
 <header class="site-header">
-  <div class="wrap bar">
-    <a class="brand" href="/">
-      <img src="/logo-on-light.svg" alt="" width="104" height="58" />
-      <span>{site.name}</span>
-    </a>
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="/">
+        <img src="/logo-on-light.svg" alt="" width="84" height="47" />
+        <span>{site.name}</span>
+      </a>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-      <span class="when-closed"><Icon name="menu" /></span>
-      <span class="when-open"><Icon name="close" /></span>
-      <span>Menu</span>
-    </button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="when-closed"><Icon name="menu" /></span>
+        <span class="when-open"><Icon name="close" /></span>
+        <span>Menu</span>
+      </button>
 
-    <nav id="site-nav" class="site-nav" aria-label="Main">
-      <ul>
-        {
-          nav.map((item) => (
-            <li>
-              <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-      <a class="button button-small" href={cta.href}>{cta.label}</a>
-    </nav>
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <a class="button button-small" href={cta.href}>{cta.label}</a>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -56,7 +58,6 @@ const cta =
         toggle.focus();
       }
     });
-    // Matches the 64rem breakpoint in the styles below.
     matchMedia('(min-width: 64.0625rem)').addEventListener('change', (event) => {
       if (event.matches) setOpen(false);
     });
@@ -64,12 +65,13 @@ const cta =
 </script>
 
 <style>
-  /* The header shares the opening band's pale teal, and turns white once the page scrolls. */
+  /* A frosted bar that floats over the page. */
   .site-header {
-    background: var(--tint);
-    transition:
-      background-color var(--dur) var(--ease-out),
-      box-shadow var(--dur) var(--ease-out);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    padding-top: var(--space-3);
+    view-transition-name: site-header;
   }
 
   .bar {
@@ -78,7 +80,29 @@ const cta =
     justify-content: space-between;
     gap: var(--space-5);
     min-height: var(--header-h);
-    padding-block: var(--space-2);
+    padding: var(--space-2) var(--space-2) var(--space-2) var(--space-5);
+    border-radius: var(--radius);
+    background: rgb(255 255 255 / 0.94);
+    box-shadow:
+      inset 0 0 0 1px rgb(211 222 223 / 0.9),
+      0 1px 2px rgb(12 26 31 / 0.04);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    transition: box-shadow var(--dur) var(--ease-out);
+  }
+
+  .site-header[data-scrolled] .bar {
+    background: rgb(255 255 255 / 0.96);
+    box-shadow:
+      inset 0 0 0 1px rgb(211 222 223 / 0.9),
+      0 14px 34px -18px rgb(12 26 31 / 0.3);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .bar,
+    .site-header[data-scrolled] .bar {
+      background: rgb(255 255 255 / 0.97);
+    }
   }
 
   .brand {
@@ -86,26 +110,21 @@ const cta =
     align-items: center;
     gap: var(--space-3);
     color: var(--ink);
-    font-family: var(--font-display);
-    font-weight: 650;
-    font-size: 1.125rem;
+    font-weight: 620;
+    font-stretch: 106%;
+    font-size: 1.0625rem;
     line-height: 1.1;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     text-decoration: none;
   }
 
   .brand img {
-    width: 6.5rem;
+    width: 4.75rem;
     height: auto;
-    transition: rotate var(--dur) var(--ease-glide);
   }
 
   .brand:hover {
     color: var(--ink);
-  }
-
-  .brand:hover img {
-    rotate: -3deg;
   }
 
   .site-nav {
@@ -117,7 +136,7 @@ const cta =
   .site-nav ul {
     display: flex;
     align-items: center;
-    gap: clamp(0.75rem, 1.5vw, 1.75rem);
+    gap: var(--space-1);
   }
 
   .site-nav li a,
@@ -125,25 +144,29 @@ const cta =
     white-space: nowrap;
   }
 
-  /* The underline draws in from the left on hover and stays for the current page. */
   .site-nav li a {
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
-    color: var(--ink);
+    min-height: 2.5rem;
+    padding: 0 0.8rem;
+    border-radius: var(--radius-sm);
+    color: var(--ink-2);
     font-size: var(--text-sm);
-    font-weight: 550;
+    font-weight: 520;
     text-decoration: none;
-    background: linear-gradient(var(--teal), var(--teal)) no-repeat 0 calc(100% - 0.45rem) / 0% 2px;
     transition:
-      background-size 240ms var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out),
       color var(--dur-fast) var(--ease-out);
   }
 
-  .site-nav li a:hover,
+  .site-nav li a:hover {
+    background: rgb(12 26 31 / 0.05);
+    color: var(--ink);
+  }
+
   .site-nav li a[aria-current='page'] {
-    color: var(--teal-strong);
-    background-size: 100% 2px;
+    color: var(--ink);
+    background: rgb(11 117 102 / 0.08);
   }
 
   .menu-toggle {
@@ -154,13 +177,13 @@ const cta =
     min-height: 2.75rem;
     padding: 0 var(--space-4);
     border: 0;
-    border-radius: 999px;
-    background: var(--white);
-    box-shadow: inset 0 0 0 1.5px var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
     color: var(--ink);
     font: inherit;
     font-size: var(--text-sm);
-    font-weight: 650;
+    font-weight: 600;
     cursor: pointer;
   }
 
@@ -177,30 +200,17 @@ const cta =
     display: inline-flex;
   }
 
-  /* Wide and tall enough screens keep the header in view. Phones and zoomed-in
-     windows do not, so it never eats a short viewport. */
-  @media (min-width: 64.0625rem) and (min-height: 34rem) {
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      view-transition-name: site-header;
-    }
-
-    .site-header[data-scrolled] {
-      background: rgb(255 255 255 / 0.94);
-      box-shadow:
-        0 1px 0 var(--line),
-        0 12px 28px -20px rgb(14 31 29 / 0.35);
-      backdrop-filter: blur(10px);
-    }
-  }
-
   @media (max-width: 64rem) {
+    .site-header {
+      position: relative;
+      padding-top: var(--space-2);
+    }
+
     .bar {
       flex-wrap: wrap;
       gap: var(--space-3);
-      min-height: 4rem;
+      min-height: 3.5rem;
+      padding-left: var(--space-4);
     }
 
     .brand {
@@ -210,7 +220,7 @@ const cta =
     }
 
     .brand img {
-      width: 5rem;
+      width: 4rem;
     }
 
     .brand span {
@@ -225,14 +235,8 @@ const cta =
       flex-basis: 100%;
       flex-direction: column;
       align-items: stretch;
-      gap: var(--space-4);
-      padding: var(--space-2) var(--space-4) var(--space-4);
-      margin-bottom: var(--space-3);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow:
-        inset 0 0 0 1px var(--line),
-        var(--shadow-1);
+      gap: var(--space-3);
+      padding: 0 var(--space-2) var(--space-3);
     }
 
     :global(.js) .site-nav {
@@ -252,12 +256,14 @@ const cta =
     .site-nav li a {
       display: flex;
       min-height: 3rem;
-      border-bottom: 1px solid var(--line);
+      padding: 0 var(--space-2);
+      border-top: 1px solid var(--line-soft);
+      border-radius: 0;
       font-size: var(--text-base);
-      background: none;
     }
 
     .site-nav li a[aria-current='page'] {
+      background: none;
       color: var(--teal);
     }
 
@@ -265,25 +271,16 @@ const cta =
       align-self: flex-start;
     }
 
-    /* Without JavaScript the links sit in a compact wrapping row. */
-    :global(html:not(.js)) .site-nav {
-      padding: 0;
-      background: none;
-      box-shadow: none;
-    }
-
     :global(html:not(.js)) .site-nav ul {
       flex-direction: row;
       flex-wrap: wrap;
-      gap: 0 var(--space-5);
     }
 
     :global(html:not(.js)) .site-nav li a {
-      border-bottom: 0;
+      border-top: 0;
     }
   }
 
-  /* Very large text: let the name wrap under the logo instead of sliding under the button. */
   @media (max-width: 18rem) {
     .brand {
       flex: 1 1 100%;
@@ -292,8 +289,8 @@ const cta =
   }
 
   @media (forced-colors: active) {
-    .site-header {
-      border-bottom: 1px solid CanvasText;
+    .bar {
+      border: 1px solid CanvasText;
     }
   }
 </style>
