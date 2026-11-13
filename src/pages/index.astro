@@ -8,7 +8,7 @@ import hallWide from '../assets/photos/triathlon-2026-hall-wide.jpg';
 import organizers from '../assets/photos/organizers-2025.jpg';
 
 const reg = nextEvent.registration;
-const headline = 'Free STEM contests and classes, run by Calgary students.';
+const headline = 'Building Calgary’s next generation of problem-solvers.';
 const words = headline.split(' ');
 
 const programs = [
@@ -100,8 +100,8 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
           }
         </h1>
         <p class="lede intro" style="--d:420ms">
-          Alpine Reasoning Challenge is a nonprofit run by junior high and high school students. Every
-          contest, class and lunch is free.
+          Alpine Reasoning Challenge is a student-run nonprofit. Our free contests and classes give young
+          people harder problems to work on, and friends to solve them with.
         </p>
         <p class="hero-actions intro" style="--d:520ms">
           <a class="button" href="#programs">See what we run <Icon name="arrow" /></a>
@@ -168,7 +168,7 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
     <div class="wrap">
       <div class="programs-main">
         <div class="section-head">
-          <h2 id="programs-heading">What we run</h2>
+          <h2 id="programs-heading">Ways to take part</h2>
           <p class="lede">
             Everything ARC runs is free. Contests happen in person in Calgary, and classes have run
             online.
@@ -207,10 +207,10 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
     <div class="wrap problem-grid">
       <div class="problem-main">
         <div class="section-head">
-          <h2 id="problem-heading" data-reveal>Try one of our problems</h2>
+          <h2 id="problem-heading" data-reveal>Try a real contest problem</h2>
           <p class="lede">
-            Part 1 needs nothing past counting. The later parts get harder quickly, and the last one is
-            meant to take a while.
+            This one opened the Algorithmic Thinking round at the 2026 Summit STEM Triathlon. Part 1 needs
+            nothing past counting. The last part is meant to take a while.
           </p>
         </div>
 
@@ -295,7 +295,7 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
   <section class="section day-section" aria-labelledby="day-heading">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="day-heading">What a contest day looks like</h2>
+        <h2 id="day-heading">A day at an ARC contest</h2>
         <p class="lede">
           Each in-person contest takes one day. Past contests started between 9 and 10 in the morning and
           finished by 4 in the afternoon.
@@ -337,7 +337,7 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
         <figcaption>ARC organizers at RMJSC 2025</figcaption>
       </figure>
       <div class="about-copy">
-        <h2 id="about-heading">Run by students</h2>
+        <h2 id="about-heading">Made by students, for students</h2>
         <p class="lede">
           Every ARC organizer is a junior high or high school student volunteer. We write the problems and
           teach the workshops ourselves.
@@ -360,7 +360,7 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
   <section class="section support" aria-labelledby="support-heading">
     <div class="wrap support-grid">
       <div>
-        <h2 id="support-heading">Free, because sponsors pay for it</h2>
+        <h2 id="support-heading">Free for every student, thanks to our sponsors</h2>
         <p class="lede">
           Sponsors and donors cover rooms, food, printing and prizes, so no student pays to take part.
         </p>
@@ -380,7 +380,7 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
   <section class="section faq" aria-labelledby="faq-heading">
     <div class="wrap faq-grid">
       <div>
-        <h2 id="faq-heading">For parents and teachers</h2>
+        <h2 id="faq-heading">Questions from parents and teachers</h2>
         <p class="lede">
           Teachers can email <a href={`mailto:${site.email}`}>{site.email}</a> for event details to share
           with their students.
@@ -441,7 +441,7 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
 
   h1 {
     hyphens: manual;
-    max-width: 16ch;
+    max-width: 15ch;
   }
 
   /* On shorter laptop screens the headline scales with height too, so the event panel stays in view. */
@@ -1314,6 +1314,14 @@ const description = `Free STEM contests and classes for Calgary youth, run by st
   }
 
   @media (max-width: 36rem) {
+    h1 {
+      font-size: min(var(--text-h1), 10.8vw);
+    }
+
+    .hero-copy .lede {
+      font-size: var(--text-base);
+    }
+
     .day-list {
       grid-template-columns: minmax(0, 1fr);
       gap: var(--space-5);

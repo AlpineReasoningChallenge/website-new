@@ -47,8 +47,8 @@ ARC is a youth-led nonprofit in Calgary: high school students write the problems
 - Name: Alpine Reasoning Challenge, short form ARC.
 - Logo: the existing hand-drawn mark (shooting-star arc over "ARC" and three peaks), redrawn faithfully as a vector with on-light and on-dark versions. Brand teal #52D5BF on dark; a darker teal for text on light.
 - Owner's taste, in their words: "shouldn't be insanely fancy but look aesthetically pleasing, should be easy to navigate and find information". Three versions were rejected on 2026-11-11: a themed "trail guide" concept ("super gimmicky"); a plain white-and-teal page with no motion ("5.5/10 ... a bit bland", with a request to "add some effects or transitions sort of like how math attack has"); and a dark teal and amber rebuild with card grids, badges and stat tiles ("looks like ai slop"; "the new green design is worse" than "the original more white one").
-- Then, after a full revert to the white layout: "i didnt mean to revert it though. keep the design/style/layout etc changes of the new version with approximate colour theme of the old whiter one".
-- So: the richer layout and motion (photo stack, overlapping next-event card, program cards, interactive problem, full-width photo, the "$0" band, question cards) in a white palette with teal as the only accent and pale teal tints. No dark or saturated colour bands, no amber, no storytelling metaphor.
+- 2026-11-12, after the white layout was called "fine": "ours looks visibly vibecoded ... don't make it this toyish site. choose good colour palette one that fit's arcs logo designs", with Math Attack's smooth scrolling and 3D side animation as the reference ("dont clutter animations/apply to everything").
+- So: one frost-white ground, ink from the logo's night sky, the logo's teal as the only accent, Mona Sans, ruled rows instead of cards, few badges, and one signature motion: ARC's logo built in 3D (faceted peaks, star, arc) that flies down a side lane and becomes the sample problem's rhythm. Smooth wheel scrolling. No dark or saturated colour bands, no themed concepts, no animation on every section.
 
 ## Evidence on Hand
 
